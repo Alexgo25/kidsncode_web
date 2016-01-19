@@ -1,0 +1,62 @@
+.unsel
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  -webkit-user-drag: none
+  -khtml-user-drag: none
+
+.cf:after
+  content: ''
+  display: block
+  height: 0
+  clear: both
+
+.g-sides
+  position: relative
+
+.g-content
+  position: relative
+  z-index: 0
+
+  &-left
+    padding-left: $left-side-width
+    transition: padding 150ms ease
+    +breakpoint($screen-xl)
+      padding-left: $left-side-xxl-width
+
+.g-feed
+  margin-left: $left-side-width
+  margin-right: $right-side-width
+  transition: margin 150ms ease
+  +breakpoint($screen-md)
+    margin-left: $left-side-xl-width
+    margin-right: $right-side-width
+    .is-right-side &
+      margin-left: $left-side-width
+      margin-right: $right-side-xl-width
+  +breakpoint($screen-lg)
+    margin-left: $left-side-xxl-width
+    margin-right: $right-side-width
+    .is-right-side &
+      margin-left: $left-side-width
+      margin-right: $right-side-xxl-width
+  +breakpoint($screen-xl)
+    margin-left: $left-side-xxl-width
+    margin-right: $right-side-big-width
+    .is-right-side &
+      margin-left: $left-side-big-width
+      margin-right: $right-side-xxl-width
+  +breakpoint($screen-xxl)
+    margin-left: $left-side-xxl-width
+    margin-right: $right-side-xxl-width
+    .is-right-side &
+      margin-left: $left-side-xxl-width
+      margin-right: $right-side-xxl-width
+
+body.is-noscroll
+  overflow: hidden
+
+body.is-branding
+  background-position-y: $headline-height !important
+  +breakpoint($screen-xl)
+    background-position-y: $headline-big-height !important

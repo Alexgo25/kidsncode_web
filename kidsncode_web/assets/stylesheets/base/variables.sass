@@ -1,0 +1,183 @@
+/* colors */
+
+$white1:  #ffffff
+$white2:  #f9f9f9
+$white3:  #f4f4f4
+
+$gray1:   #333333
+$gray2:   #b2b2b2
+$gray3:   #d9d9d9
+$gray4:   #eaeaea
+
+$black0:  #000000
+$black1:  #161616
+$black2:  #262626
+$black3:  #303030
+
+$red1:    #ff3729
+
+/* sizes */
+
+$headline-height:       60px
+$left-side-width:       $headline-height
+$right-side-width:      $headline-height
+
+$headline-big-height:    80px
+$left-side-big-width:    $headline-big-height
+$right-side-big-width:   $headline-big-height
+
+$left-side-xl-width:    300px
+$right-side-xl-width:   $left-side-xl-width
+
+$left-side-xxl-width:   360px
+$right-side-xxl-width:  $left-side-xxl-width
+
+$sides-headline-height: 60px
+
+$share-billboard-height:      50px
+$share-entry-height:          60px
+$share-series-height:         40px
+$share-news-main-height:      50px
+$share-faq-height:            60px
+
+$article-head-with-cover-height:      550px
+$article-share-footer-height:         60px
+$article-slider-size:                 750px
+$article-person-height:               330px
+$article-timeline-height:             750px
+$article-timeline-chrono-height:      80px
+$article-timeline-chrono-width:       100px
+$article-timeline-wide-chrono-width:  210px
+$article-timeline-column-width:       430px
+
+$news-head-with-cover-height:     $article-head-with-cover-height
+$news-share-footer-height:        $article-share-footer-height
+
+/* z-indexes */
+$guide-popup-zindex:    155
+$logo-zindex:           150
+$search-zindex:         145
+$headline-zindex:       140
+$article-note-zindex:   135
+$billboard-zindex:      130
+$menu-zindex:           125
+$footer-zindex:         120
+$subscribe-zindex:      115
+$popular-zindex:        110
+$back-top-zindex:       105
+$left-side-zindex:      100
+$right-side-zindex:     $left-side-zindex
+$popup-zindex:          $headline-zindex
+
+/* breakpoints */
+
+$screen-xxs:      320px
+$screen-xxs-min:  $screen-xxs
+
+$screen-xs:       480px
+$screen-xs-min:   $screen-xs
+
+$screen-sm:       780px
+$screen-sm-min:   $screen-sm
+
+$screen-md:       1020px
+$screen-md-min:   $screen-md
+
+$screen-lg:       1280px
+$screen-lg-min:   $screen-lg
+
+$screen-xl:       1440px
+$screen-xl-min:   $screen-xl
+
+$screen-xxl:      1920px
+$screen-xxl-min:  $screen-xxl
+
+$screen-xxs-max:  $screen-xs-min - 1
+$screen-xs-max:   $screen-sm-min - 1
+$screen-sm-max:   $screen-md-min - 1
+$screen-md-max:   $screen-lg-min - 1
+$screen-lg-max:   $screen-xl-min - 1
+$screen-xl-max:   $screen-xxl-min - 1
+
+/* mixins of breakpoits */
+
+=breakpoint($min: 0, $max: 0)
+  @if unitless($max)
+    @media screen and (min-width: $min)
+      @content
+
+  @else if unitless($min)
+    @media screen and (max-width: $max)
+      @content
+
+  @else
+    @media screen and (min-width: $min) and (max-width: $max)
+      @content
+
+=retina
+  @media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min--moz-device-pixel-ratio: 2), screen and (-o-min-device-pixel-ratio: 2/1), screen and (min-device-pixel-ratio: 2), screen and (min-resolution: 192dpi), screen and (min-resolution: 2dppx)
+    @content
+
+/* mixins fonts */
+
+=font-default
+  font-family: GroteskDemi, Helvetica, Arial, sans-serif
+
+=font-extra
+  font-family: Lava, Georgia, sans
+
+=font-number
+  font-family: afisha_number, Helvetica, Arial, sans-serif
+
+/* mixins */
+
+=absolute-full
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+=inline
+  white-space: nowrap
+  word-wrap: normal
+
+=notinline
+  white-space: normal
+
+=with-link
+  & a
+    color: $red1
+    &:hover
+      text-decoration: underline
+
+=inpage-article
+  width: $screen-sm - 150 // 630
+  margin-left: auto
+  margin-right: auto
+  @media screen and (min-width: $screen-md)
+    width: $screen-md - 60 // 600
+    padding-right: 360px
+  @media screen and (min-width: $screen-lg)
+    width: $screen-lg - 170 // 730
+    padding-right: 380px
+  .article__with-branding &
+    width: auto
+    margin-left: 40px
+    margin-right: 40px
+    @media screen and (min-width: $screen-md)
+      width: auto
+    @media screen and (min-width: $screen-lg)
+      width: auto
+
+=inpage-news
+  width: $screen-sm - 220 // 560
+  margin-left: auto
+  margin-right: auto
+  @media screen and (min-width: $screen-md)
+    width: $screen-md - 100 // 560
+    padding-right: 360px
+  @media screen and (min-width: $screen-lg)
+    width: $screen-lg - 240 // 660
+    padding-right: 380px
+
