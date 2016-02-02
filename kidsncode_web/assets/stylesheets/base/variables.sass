@@ -1,73 +1,24 @@
 /* colors */
 
 $white1:  #ffffff
-$white2:  #f9f9f9
-$white3:  #f4f4f4
+$black1:  #000000
 
-$gray1:   #333333
-$gray2:   #b2b2b2
-$gray3:   #d9d9d9
-$gray4:   #eaeaea
+$yellow1: #f7d37f
+$yellow2: #f5cb6e
+$yellow3: #f1b843
 
-$black0:  #000000
-$black1:  #161616
-$black2:  #262626
-$black3:  #303030
+$red1: #f86161
+$red2: #e14444
 
-$red1:    #ff3729
+$blue1: #a44db9
+
 
 /* sizes */
 
 $headline-height:       60px
-$left-side-width:       $headline-height
-$right-side-width:      $headline-height
-
-$headline-big-height:    80px
-$left-side-big-width:    $headline-big-height
-$right-side-big-width:   $headline-big-height
-
-$left-side-xl-width:    300px
-$right-side-xl-width:   $left-side-xl-width
-
-$left-side-xxl-width:   360px
-$right-side-xxl-width:  $left-side-xxl-width
-
-$sides-headline-height: 60px
-
-$share-billboard-height:      50px
-$share-entry-height:          60px
-$share-series-height:         40px
-$share-news-main-height:      50px
-$share-faq-height:            60px
-
-$article-head-with-cover-height:      550px
-$article-share-footer-height:         60px
-$article-slider-size:                 750px
-$article-person-height:               330px
-$article-timeline-height:             750px
-$article-timeline-chrono-height:      80px
-$article-timeline-chrono-width:       100px
-$article-timeline-wide-chrono-width:  210px
-$article-timeline-column-width:       430px
-
-$news-head-with-cover-height:     $article-head-with-cover-height
-$news-share-footer-height:        $article-share-footer-height
 
 /* z-indexes */
 $guide-popup-zindex:    155
-$logo-zindex:           150
-$search-zindex:         145
-$headline-zindex:       140
-$article-note-zindex:   135
-$billboard-zindex:      130
-$menu-zindex:           125
-$footer-zindex:         120
-$subscribe-zindex:      115
-$popular-zindex:        110
-$back-top-zindex:       105
-$left-side-zindex:      100
-$right-side-zindex:     $left-side-zindex
-$popup-zindex:          $headline-zindex
 
 /* breakpoints */
 
@@ -121,13 +72,7 @@ $screen-xl-max:   $screen-xxl-min - 1
 /* mixins fonts */
 
 =font-default
-  font-family: GroteskDemi, Helvetica, Arial, sans-serif
-
-=font-extra
-  font-family: Lava, Georgia, sans
-
-=font-number
-  font-family: afisha_number, Helvetica, Arial, sans-serif
+  font-family: UbuntuB
 
 /* mixins */
 
@@ -151,33 +96,11 @@ $screen-xl-max:   $screen-xxl-min - 1
     &:hover
       text-decoration: underline
 
-=inpage-article
-  width: $screen-sm - 150 // 630
-  margin-left: auto
-  margin-right: auto
-  @media screen and (min-width: $screen-md)
-    width: $screen-md - 60 // 600
-    padding-right: 360px
-  @media screen and (min-width: $screen-lg)
-    width: $screen-lg - 170 // 730
-    padding-right: 380px
-  .article__with-branding &
-    width: auto
-    margin-left: 40px
-    margin-right: 40px
-    @media screen and (min-width: $screen-md)
-      width: auto
-    @media screen and (min-width: $screen-lg)
-      width: auto
-
-=inpage-news
-  width: $screen-sm - 220 // 560
-  margin-left: auto
-  margin-right: auto
-  @media screen and (min-width: $screen-md)
-    width: $screen-md - 100 // 560
-    padding-right: 360px
-  @media screen and (min-width: $screen-lg)
-    width: $screen-lg - 240 // 660
-    padding-right: 380px
+=circle($size, $color, $borderCol, $borderSiz)
+  display: inline-block
+  height: $size
+  width: $size
+  border-radius: $size
+  border-color: $borderCol
+  border-size: $borderSiz
 
