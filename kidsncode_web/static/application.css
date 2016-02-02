@@ -1,0 +1,164 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table,
+caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* colors */
+/* sizes */
+/* z-indexes */
+/* breakpoints */
+/* mixins of breakpoits */
+/* mixins fonts */
+/* mixins */
+@font-face {
+  font-family: 'UbuntuB';
+  src: url("../assets/fonts/UbuntuB/Ubuntu-B.ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%; }
+
+body {
+  min-width: 780px;
+  line-height: 1;
+  font-family: UbuntuB;
+  font-size: 62.5%;
+  color: #000000;
+  background-color: #000000;
+  -webkit-font-smoothing: antialiased; }
+
+*:focus {
+  outline: 0; }
+
+ins {
+  text-decoration: none; }
+
+del {
+  text-decoration: line-through; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  outline: none; }
+
+input, textarea {
+  outline: none;
+  margin: 0;
+  border-radius: 0px;
+  background-color: #ffffff;
+  -webkit-appearance: none;
+  opacity: 1; }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0 50px #ffffff !important; }
+
+input[type='submit'] {
+  -webkit-appearance: none;
+  -moz-appearance: none; }
+
+img {
+  vertical-align: bottom; }
+
+*, *:before, *:after {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box; }
+
+button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  outline: none; }
+
+span.sprite {
+  display: inline-block; }
+
+.unsel {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none; }
+
+.cf:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both; }
+
+.g-sides {
+  position: relative; }
+
+.g-content {
+  position: relative;
+  z-index: 0; }
+
+body.is-noscroll {
+  overflow: hidden; }
+
+.game-window {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #f7d37f;
+  width: 75%;
+  background: -webkit-linear-gradient(center, #f5cb6e, #f7d37f);
+  background: linear-gradient(to center, #f5cb6e, #f7d37f); }
+
+.control-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #f1b843;
+  width: 25%; }
+  .control-panel__headline {
+    font-size: 25px;
+    text-align: center;
+    padding: 40px 0 20px 0; }
+  .control-panel__program {
+    height: 55%;
+    padding: 0 20px;
+    -webkit-transition: max-height 300ms ease-out;
+    transition: max-height 300ms ease-out; }
+    .control-panel__program-wrap {
+      background-color: #f5cb6e;
+      border-radius: 3px;
+      height: 100%; }
