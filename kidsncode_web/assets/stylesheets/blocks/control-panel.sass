@@ -5,6 +5,7 @@
   right: 0
   background-color: $yellow3
   width: 25%
+  min-width: 310px
 
   &__headline
     font-size: 25px
@@ -20,3 +21,39 @@
       background-color: $yellow2
       border-radius: 3px
       height: 100%
+      overflow: hidden
+
+    &-headline
+      position: relative
+      top: 20px
+      margin: 0 auto
+      text-align: center
+      &:after
+        position: absolute
+        top: 16px
+        left: 0
+        right: 0
+        content: 'После запуска'
+        text-transform: uppercase
+        font-size: 13px
+        color: $white1
+
+    &-actions
+      position: relative
+      top: -5px
+      width: 166px
+      margin: 0 auto
+
+    &-action
+      width: 100%
+      background-color: $red1
+      text-align: center
+      border-bottom-width: 3px
+      border-bottom-style: solid 
+      border-bottom-color: $red2
+      height: 40px
+      border-radius: 4px
+      &:last-child
+        border-bottom-width: 6px
+
+
