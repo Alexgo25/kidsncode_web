@@ -15,11 +15,21 @@ Icon classes can be used entirely standalone. They are named after their origina
   width: 252px;
   height: 70px;
 }
+.icon-panel-loop {
+  background-image: url(sprite.png);
+  background-position: 0px -70px;
+  width: 213px;
+  height: 89px;
+}
 
 @media (-webkit-min-device-pixel-ratio: 2),
        (min-resolution: 192dpi) {
   .icon-panel-headline {
     background-image: url(sprite@2x.png);
-    background-size: 252px 70px;
+    background-size: 252px 159px;
+  }
+  .icon-panel-loop {
+    background-image: url(sprite@2x.png);
+    background-size: 252px 159px;
   }
 }
