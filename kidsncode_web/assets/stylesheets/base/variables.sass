@@ -13,8 +13,11 @@ $red2: #e14444
 $purple1: #a44db9
 $purple2: #711d86
 
+$orange1: #f17d17
+$orange2: #de6b04
 
-
+$blue1: #52b6aa
+$blue2: #25776f
 
 /* sizes */
 
@@ -99,11 +102,15 @@ $screen-xl-max:   $screen-xxl-min - 1
     &:hover
       text-decoration: underline
 
-=circle($size, $color, $borderCol, $borderSiz)
+=circle($size, $color, $borderCol, $borderSiz, $hoverCol)
   display: inline-block
   height: $size
   width: $size
+  background-color: $color
   border-radius: $size
   border-color: $borderCol
-  border-size: $borderSiz
+  border-width: $borderSiz
+  &:hover
+    background-color: $hoverCol
+    border-color: $hoverCol
 

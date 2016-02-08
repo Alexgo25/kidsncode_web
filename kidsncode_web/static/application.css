@@ -133,7 +133,7 @@ span.sprite {
 body.is-noscroll {
   overflow: hidden; }
 
-.game-window {
+.window {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -142,8 +142,30 @@ body.is-noscroll {
   width: 75%;
   background: -webkit-linear-gradient(center, #f5cb6e, #f7d37f);
   background: linear-gradient(to center, #f5cb6e, #f7d37f); }
+  .window__container {
+    margin: 100px 0 0 100px;
+    position: relative; }
+  .window__horizontal {
+    min-width: 0px;
+    height: 50px;
+    background-color: #a44db9;
+    -webkit-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+    display: inline-block; }
+    .window__horizontal.is-open {
+      min-width: 200px; }
+  .window__vertical {
+    width: 50px;
+    min-height: 0px;
+    background-color: #a44db9;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all 100ms ease-out;
+    transition: all 100ms ease-out; }
+    .window__vertical.is-open {
+      min-height: 200px; }
 
-.control-panel {
+.panel {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -151,78 +173,320 @@ body.is-noscroll {
   background-color: #f1b843;
   width: 25%;
   min-width: 310px; }
-  .control-panel__headline {
-    display: table;
+
+.panel-headline {
+  display: table;
+  width: 100%;
+  height: 10%;
+  font-size: 25px;
+  text-align: center; }
+  .panel-headline__wrap {
+    display: table-cell;
+    vertical-align: middle; }
+
+.panel-program {
+  height: 60%;
+  padding: 0 20px;
+  -webkit-transition: max-height 300ms ease-out;
+  transition: max-height 300ms ease-out; }
+  .panel-program__wrap {
+    background-color: #f5cb6e;
+    border-radius: 3px;
+    height: 100%;
+    overflow: hidden; }
+  .panel-program__content {
+    padding: 20px 0; }
+  .panel-program__headline {
+    position: relative;
+    margin: 0 auto;
+    width: 252px; }
+    .panel-program__headline:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 45px;
+      content: 'После запуска';
+      text-transform: uppercase;
+      font-size: 13px;
+      background-color: #a44db9;
+      color: #ffffff;
+      border-radius: 3px;
+      text-align: center;
+      padding-top: 18px; }
+    .panel-program__headline-horizontal {
+      width: 252px;
+      height: 48px;
+      display: inline-block;
+      background-color: #a44db9;
+      border-radius: 3px;
+      border-bottom: 3px solid #711d86; }
+    .panel-program__headline-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 70px;
+      width: 48px;
+      background-color: #a44db9;
+      border-radius: 3px;
+      border-right: 8px solid #711d86; }
+    .panel-program__headline-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 70px;
+      width: 48px;
+      background-color: #a44db9;
+      border-radius: 3px;
+      border-left: 8px solid #711d86; }
+  .panel-program__actions {
+    position: relative;
+    width: 166px;
+    top: -2px;
+    margin: 0 auto; }
+  .panel-program__action {
+    width: 166px;
+    background-color: #f86161;
+    text-align: center;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: #e14444;
+    height: 40px;
+    position: relative;
+    border-radius: 4px; }
+    .panel-program__loop .panel-program__action {
+      left: 44px; }
+      .panel-program__loop .panel-program__action:nth-child(2) {
+        margin-top: -4px; }
+  .panel-program__loop-angle {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    -webkit-transition: all 500ms ease-out;
+    transition: all 500ms ease-out;
+    opacity: 0; }
+    .panel-program__loop-angle:after {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 44px;
+      content: 'ПОВТОРИТЬ x2';
+      font-size: 13px;
+      color: #ffffff;
+      background-color: #a44db9;
+      padding: 16px 0 0 20px;
+      border-radius: 3px; }
+    .panel-program__loop-angle.is-open {
+      opacity: 1; }
+  .panel-program__loop-horizontal {
+    min-width: 0px;
+    height: 50px;
+    background-color: #a44db9;
+    -webkit-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+    display: inline-block;
+    border-radius: 3px;
+    border-bottom: 6px solid #711d86; }
+    .panel-program__loop-horizontal.is-open {
+      min-width: 210px; }
+  .panel-program__loop-vertical {
+    width: 68px;
+    min-height: 0px;
+    background-color: #a44db9;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all 100ms ease-out;
+    transition: all 100ms ease-out;
+    border-radius: 3px;
+    border-right: 28px solid #711d86; }
+    .panel-program__loop-vertical.is-open {
+      min-height: 248px; }
+
+.panel-buttons {
+  white-space: nowrap;
+  word-wrap: normal;
+  font-size: 0;
+  width: 200%;
+  height: 30%;
+  overflow: hidden; }
+  .panel-buttons__default, .panel-buttons__loop {
+    display: inline-block;
+    height: 100%;
     width: 100%;
-    height: 10%;
-    font-size: 25px;
-    text-align: center; }
-    .control-panel__headline-wrap {
+    -webkit-transition: all 500ms ease-out;
+    transition: all 500ms ease-out;
+    float: left;
+    width: 50%; }
+  .panel-buttons__default {
+    margin-left: 0; }
+    .is-loop .panel-buttons__default {
+      margin-left: -100%; }
+    .panel-buttons__default-wrap {
+      display: table;
+      height: 100%;
+      width: 100%;
+      padding-top: 20px; }
+    .panel-buttons__default-column {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 33.333%; }
+  .panel-buttons__btn {
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer; }
+    .panel-buttons__btn:after {
+      position: absolute;
+      top: -20px;
+      left: 0;
+      right: 0;
+      font-size: 12px;
+      color: #000000; }
+  .panel-buttons__btn-debug {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    background-color: #52b6aa;
+    border-radius: 70px;
+    border-color: #52b6aa;
+    border-width: 0px;
+    position: relative; }
+    .panel-buttons__btn-debug:hover {
+      background-color: #25776f;
+      border-color: #25776f; }
+    .panel-buttons__btn-debug:after {
+      content: 'Отладка'; }
+  .panel-buttons__btn-restart {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    background-color: #f17d17;
+    border-radius: 70px;
+    border-color: #f17d17;
+    border-width: 0px;
+    display: block; }
+    .panel-buttons__btn-restart:hover {
+      background-color: #de6b04;
+      border-color: #de6b04; }
+    .panel-buttons__btn-restart:after {
+      content: 'Заново'; }
+  .panel-buttons__btn-start {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    background-color: #f86161;
+    border-radius: 70px;
+    border-color: #f86161;
+    border-width: 0px;
+    margin-top: 55px; }
+    .panel-buttons__btn-start:hover {
+      background-color: #e14444;
+      border-color: #e14444; }
+    .panel-buttons__btn-start:after {
+      content: 'Запуск'; }
+  .panel-buttons__btn-cancel {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    background-color: #a44db9;
+    border-radius: 70px;
+    border-color: #a44db9;
+    border-width: 0px; }
+    .panel-buttons__btn-cancel:hover {
+      background-color: #711d86;
+      border-color: #711d86; }
+    .panel-buttons__btn-cancel:after {
+      content: 'В начало'; }
+  .panel-buttons__loop {
+    margin-left: 100%; }
+    .is-loop .panel-buttons__loop {
+      margin-left: 0; }
+    .panel-buttons__loop-selection {
+      height: 50%;
+      text-align: center; }
+    .panel-buttons__loop-headline {
+      font-size: 15px;
+      color: #000000;
+      padding: 20px 0 15px; }
+    .panel-buttons__loop-elements {
+      position: relative;
+      display: inline-block;
+      width: 80px;
+      height: 70px;
+      background-color: #f7d37f;
+      border-radius: 3px; }
+    .panel-buttons__loop-element {
+      width: 100%;
+      height: 100%;
+      font-size: 30px;
+      line-height: 67px; }
+    .panel-buttons__loop-arrow {
+      position: relative;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      cursor: pointer; }
+      .panel-buttons__loop-arrow:hover {
+        opacity: 0.7; }
+    .panel-buttons__loop-left {
+      border-width: 9px 15.6px 9px 0;
+      border-color: transparent #000000 transparent transparent;
+      margin-right: 15px; }
+    .panel-buttons__loop-right {
+      border-width: 9px 0 9px 15.6px;
+      border-color: transparent transparent transparent #000000;
+      margin-left: 15px; }
+    .panel-buttons__loop-buttons {
+      display: table;
+      width: 100%;
+      height: 50%;
+      padding: 30px 40px 0; }
+    .panel-buttons__loop-wrap {
       display: table-cell;
       vertical-align: middle; }
-  .control-panel__program {
-    height: 60%;
-    padding: 0 20px;
-    -webkit-transition: max-height 300ms ease-out;
-    transition: max-height 300ms ease-out; }
-    .control-panel__program-wrap {
-      background-color: #f5cb6e;
-      border-radius: 3px;
-      height: 100%;
-      overflow: hidden; }
-    .control-panel__program-headline {
+    .panel-buttons__loop-cancel {
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+      background-color: #a44db9;
+      border-radius: 50px;
+      border-color: #a44db9;
+      border-width: 0px;
+      cursor: pointer;
       position: relative;
-      top: 20px;
-      margin: 0 auto;
-      text-align: center; }
-      .control-panel__program-headline:after {
+      float: left; }
+      .panel-buttons__loop-cancel:hover {
+        background-color: #711d86;
+        border-color: #711d86; }
+      .panel-buttons__loop-cancel:after {
         position: absolute;
-        top: 16px;
-        left: 0;
+        top: -20px;
+        left: 4px;
         right: 0;
-        content: 'После запуска';
-        text-transform: uppercase;
-        font-size: 13px;
-        color: #ffffff; }
-    .control-panel__program-actions {
+        font-size: 12px;
+        color: #000000;
+        content: 'Отмена'; }
+    .panel-buttons__loop-submit {
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+      background-color: #52b6aa;
+      border-radius: 50px;
+      border-color: #52b6aa;
+      border-width: 0px;
+      cursor: pointer;
       position: relative;
-      top: -5px;
-      width: 166px;
-      margin: 0 auto; }
-      .control-panel__program-loop .control-panel__program-actions {
-        position: relative;
-        margin-top: -38px;
-        left: 45px;
-        background-color: #711d86; }
-    .control-panel__program-action {
-      width: 166px;
-      background-color: #f86161;
-      text-align: center;
-      border-bottom-width: 3px;
-      border-bottom-style: solid;
-      border-bottom-color: #e14444;
-      height: 40px;
-      position: relative;
-      border-radius: 4px; }
-      .control-panel__program-loop .control-panel__program-action:after {
-        content: '';
+      float: right; }
+      .panel-buttons__loop-submit:hover {
+        background-color: #25776f;
+        border-color: #25776f; }
+      .panel-buttons__loop-submit:after {
         position: absolute;
-        left: -44px;
-        width: 44px;
-        height: 40px;
-        background-color: #a44db9;
-        border-right: 4px solid #711d86; }
-    .control-panel__program-loop {
-      position: relative;
-      margin-bottom: -5px; }
-      .control-panel__program-loop-headline {
-        position: relative;
-        margin: 0 auto;
-        text-align: center; }
-        .control-panel__program-loop-headline:after {
-          position: absolute;
-          top: 16px;
-          left: 47px;
-          content: 'ПОВТОРИТЬ x2';
-          font-size: 13px;
-          color: #ffffff; }
+        top: -20px;
+        left: 4px;
+        right: 0;
+        font-size: 12px;
+        color: #000000;
+        content: 'Готово'; }

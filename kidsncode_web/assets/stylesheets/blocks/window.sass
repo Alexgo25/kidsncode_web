@@ -1,0 +1,33 @@
+.window
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  background-color: $yellow1
+  width: 75%
+  background: linear-gradient(to center, $yellow2, $yellow1)
+
+  &__container
+    margin: 100px 0 0 100px
+    position: relative
+
+  &__horizontal
+    min-width: 0px
+    height: 50px
+    background-color: $purple1
+    transition: all 100ms ease-out
+    display: inline-block
+    &.is-open
+      min-width: 200px
+
+  &__vertical
+    width: 50px
+    min-height: 0px
+    background-color: $purple1
+    position: absolute
+    top: 0
+    transition: all 100ms ease-out
+    &.is-open
+      min-height: 200px
+
+
