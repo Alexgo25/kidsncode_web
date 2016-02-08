@@ -13,86 +13,91 @@
 </head>
 <body>
 
-<div class="game-window js-game-window">
-  <div class="test"></div>
+<div class="window js-window">
 </div>
 
-<div class="control-panel js-control-panel">
+<div class="panel js-panel">
 
-  <div class="control-panel__headline unsel"><div class="control-panel__headline-wrap">
+  <div class="panel-headline unsel"><div class="panel-headline__wrap">
     Программа
   </div></div>
 
-  <div class="control-panel__program"><div class="control-panel__program-wrap js-panel-program">
+  <div class="panel-program"><div class="panel-program__wrap js-panel-program">
 
-    <div class="control-panel__program-content js-panel-program-content">
-      <div class="control-panel__program-headline">
-        <span class="sprite icon-panel-headline"></span>
+    <div class="panel-program__content js-panel-program-content">
+      <div class="panel-program__headline">
+        <div class="panel-program__headline-horizontal"></div>
+        <div class="panel-program__headline-left"></div>
+        <div class="panel-program__headline-right"></div>
       </div>
-      <div class="control-panel__program-actions">
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-loop">
-          <div class="control-panel__program-loop-headline">
-            <span class="sprite icon-panel-loop"></span>
+      <div class="panel-program__actions">
+        <div class="panel-program__action"></div>
+        <div class="panel-program__action"></div>
+        <div class="panel-program__loop">
+          <div class="panel-program__loop-angle js-angle">
+            <div class="panel-program__loop-horizontal js-hor"></div>
+            <div class="panel-program__loop-vertical js-ver"></div>
           </div>
-          <div class="control-panel__program-actions">
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-          </div>
+          <div class="panel-program__action"></div>
+          <div class="panel-program__action"></div>
+          <div class="panel-program__action"></div>
+          <div class="panel-program__action"></div>
+          <div class="panel-program__action"></div>
         </div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-loop">
-          <div class="control-panel__program-loop-headline">
-            <span class="sprite icon-panel-loop"></span>
+        <div class="panel-program__action"></div>
+        <div class="panel-program__action"></div>
+        <div class="panel-program__action"></div>
+        <div class="panel-program__action"></div>
+        <div class="panel-program__action"></div>
+        <div class="panel-program__action"></div>
+        <div class="panel-program__action"></div> 
+        <div class="panel-program__loop">
+          <div class="panel-program__loop-angle js-angle">
+            <div class="panel-program__loop-horizontal js-hor"></div>
+            <div class="panel-program__loop-vertical js-ver"></div>
           </div>
-          <div class="control-panel__program-actions">
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-            <div class="control-panel__program-action"></div>
-          </div>
-        </div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>
-        <div class="control-panel__program-action"></div>        
+          <div class="panel-program__action"></div>
+          <div class="panel-program__action"></div>
+          <div class="panel-program__action"></div>
+          <div class="panel-program__action"></div>
+          <div class="panel-program__action"></div>
+        </div> 
       </div>
     </div>
 
   </div></div>
 
-  <div class="control-panel__buttons">
-    <div class="control-panel__buttons-default"></div>
-    <div class="control-panel__buttons-loop"></div>
+  <div class="panel-buttons cf">
+    <div class="panel-buttons__default"><div class="panel-buttons__default-wrap">
+      <div class="panel-buttons__default-column">
+        <div class="panel-buttons__btn panel-buttons__btn-debug"></div>
+      </div>
+      <div class="panel-buttons__default-column">
+        <div class="panel-buttons__btn panel-buttons__btn-restart"></div>
+        <div class="panel-buttons__btn panel-buttons__btn-start"></div>
+      </div>
+      <div class="panel-buttons__default-column">
+        <div class="panel-buttons__btn panel-buttons__btn-cancel"></div>
+      </div>
+    </div></div>
+    <div class="panel-buttons__loop">
+      <div class="panel-buttons__loop-selection">
+        <div class="panel-buttons__loop-headline">Число повторений</div>
+        <div class="panel-buttons__loop-slider">
+          <div class="panel-buttons__loop-arrow panel-buttons__loop-left"></div>
+          <div class="panel-buttons__loop-elements">
+            <div class="panel-buttons__loop-element">1</div>
+          </div>
+          <div class="panel-buttons__loop-arrow panel-buttons__loop-right"></div>
+        </div>
+      </div>
+      <div class="panel-buttons__loop-buttons"><div class="panel-buttons__loop-wrap">
+        <div class="panel-buttons__loop-cancel"></div>
+        <div class="panel-buttons__loop-submit"></div>
+      </div></div>
+    </div>
   </div>
 </div>
-
-
-
 
 <script type="text/javascript" src="static/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="static/application.js"></script>
