@@ -57,7 +57,6 @@ body {
   min-height: 100%; }
 
 body {
-  min-width: 780px;
   line-height: 1;
   font-family: UbuntuB;
   font-size: 62.5%;
@@ -306,18 +305,18 @@ body.is-noscroll {
 .panel-buttons {
   white-space: nowrap;
   word-wrap: normal;
-  font-size: 0;
-  width: 200%;
+  width: 100%;
   height: 30%;
   overflow: hidden; }
   .panel-buttons__default, .panel-buttons__loop {
+    white-space: nowrap;
+    word-wrap: normal;
     display: inline-block;
+    vertical-align: top;
     height: 100%;
     width: 100%;
     -webkit-transition: all 500ms ease-out;
-    transition: all 500ms ease-out;
-    float: left;
-    width: 50%; }
+    transition: all 500ms ease-out; }
   .panel-buttons__default {
     margin-left: 0; }
     .is-loop .panel-buttons__default {
@@ -398,95 +397,109 @@ body.is-noscroll {
       border-color: #711d86; }
     .panel-buttons__btn-cancel:after {
       content: 'В начало'; }
-  .panel-buttons__loop {
-    margin-left: 100%; }
-    .is-loop .panel-buttons__loop {
-      margin-left: 0; }
-    .panel-buttons__loop-selection {
-      height: 50%;
-      text-align: center; }
-    .panel-buttons__loop-headline {
-      font-size: 15px;
+  .panel-buttons__loop-selection {
+    height: 50%;
+    text-align: center; }
+  .panel-buttons__loop-headline {
+    font-size: 15px;
+    color: #000000;
+    padding: 20px 0 15px; }
+  .panel-buttons__loop-slider {
+    height: 70px; }
+  .panel-buttons__loop-elements {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 70px;
+    background-color: #f7d37f;
+    border-radius: 3px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-size: 0;
+    vertical-align: middle; }
+  .panel-buttons__loop-element {
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    line-height: 67px;
+    display: inline-block;
+    vertical-align: top;
+    -webkit-transition: all 500ms ease-out;
+    transition: all 500ms ease-out; }
+    .panel-buttons__loop-element.is-margin-left {
+      margin-left: -100%; }
+  .panel-buttons__loop-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    cursor: pointer;
+    vertical-align: middle; }
+    .panel-buttons__loop-arrow:hover {
+      opacity: 0.7; }
+    .panel-buttons__loop-arrow.is-disabled {
+      opacity: 0.5;
+      cursor: default; }
+  .panel-buttons__loop-left {
+    border-width: 9px 15.6px 9px 0;
+    border-color: transparent #000000 transparent transparent;
+    margin-right: 15px; }
+  .panel-buttons__loop-right {
+    border-width: 9px 0 9px 15.6px;
+    border-color: transparent transparent transparent #000000;
+    margin-left: 15px; }
+  .panel-buttons__loop-buttons {
+    display: table;
+    width: 100%;
+    height: 50%;
+    padding: 30px 40px 0; }
+  .panel-buttons__loop-wrap {
+    display: table-cell;
+    vertical-align: middle; }
+  .panel-buttons__loop-cancel {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background-color: #a44db9;
+    border-radius: 50px;
+    border-color: #a44db9;
+    border-width: 0px;
+    cursor: pointer;
+    position: relative;
+    float: left; }
+    .panel-buttons__loop-cancel:hover {
+      background-color: #711d86;
+      border-color: #711d86; }
+    .panel-buttons__loop-cancel:after {
+      position: absolute;
+      top: -20px;
+      left: 1px;
+      right: 0;
+      font-size: 12px;
       color: #000000;
-      padding: 20px 0 15px; }
-    .panel-buttons__loop-elements {
-      position: relative;
-      display: inline-block;
-      width: 80px;
-      height: 70px;
-      background-color: #f7d37f;
-      border-radius: 3px; }
-    .panel-buttons__loop-element {
-      width: 100%;
-      height: 100%;
-      font-size: 30px;
-      line-height: 67px; }
-    .panel-buttons__loop-arrow {
-      position: relative;
-      display: inline-block;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      cursor: pointer; }
-      .panel-buttons__loop-arrow:hover {
-        opacity: 0.7; }
-    .panel-buttons__loop-left {
-      border-width: 9px 15.6px 9px 0;
-      border-color: transparent #000000 transparent transparent;
-      margin-right: 15px; }
-    .panel-buttons__loop-right {
-      border-width: 9px 0 9px 15.6px;
-      border-color: transparent transparent transparent #000000;
-      margin-left: 15px; }
-    .panel-buttons__loop-buttons {
-      display: table;
-      width: 100%;
-      height: 50%;
-      padding: 30px 40px 0; }
-    .panel-buttons__loop-wrap {
-      display: table-cell;
-      vertical-align: middle; }
-    .panel-buttons__loop-cancel {
-      display: inline-block;
-      height: 50px;
-      width: 50px;
-      background-color: #a44db9;
-      border-radius: 50px;
-      border-color: #a44db9;
-      border-width: 0px;
-      cursor: pointer;
-      position: relative;
-      float: left; }
-      .panel-buttons__loop-cancel:hover {
-        background-color: #711d86;
-        border-color: #711d86; }
-      .panel-buttons__loop-cancel:after {
-        position: absolute;
-        top: -20px;
-        left: 4px;
-        right: 0;
-        font-size: 12px;
-        color: #000000;
-        content: 'Отмена'; }
-    .panel-buttons__loop-submit {
-      display: inline-block;
-      height: 50px;
-      width: 50px;
-      background-color: #52b6aa;
-      border-radius: 50px;
-      border-color: #52b6aa;
-      border-width: 0px;
-      cursor: pointer;
-      position: relative;
-      float: right; }
-      .panel-buttons__loop-submit:hover {
-        background-color: #25776f;
-        border-color: #25776f; }
-      .panel-buttons__loop-submit:after {
-        position: absolute;
-        top: -20px;
-        left: 4px;
-        right: 0;
-        font-size: 12px;
-        color: #000000;
-        content: 'Готово'; }
+      content: 'Отмена'; }
+  .panel-buttons__loop-submit {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background-color: #52b6aa;
+    border-radius: 50px;
+    border-color: #52b6aa;
+    border-width: 0px;
+    cursor: pointer;
+    position: relative;
+    float: right; }
+    .panel-buttons__loop-submit:hover {
+      background-color: #25776f;
+      border-color: #25776f; }
+    .panel-buttons__loop-submit:after {
+      position: absolute;
+      top: -20px;
+      left: 3px;
+      right: 0;
+      font-size: 12px;
+      color: #000000;
+      content: 'Готово'; }
