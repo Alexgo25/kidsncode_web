@@ -3,7 +3,7 @@
   var programActions = program.find('.js-panel-program-content');
 
   var win            = $(window);
-  var body           = $('body');
+  var body           = $(document.body);
   
   var getVisibleHeight;
   var setSize;
