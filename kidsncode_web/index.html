@@ -16,7 +16,7 @@
 <div class="window js-window">
 </div>
 
-<div class="panel js-panel">
+<div class="panel js-panel unsel">
 
   <div class="panel-headline unsel"><div class="panel-headline__wrap">
     Программа
@@ -67,7 +67,7 @@
 
   </div></div>
 
-  <div class="panel-buttons cf">
+  <div class="panel-buttons cf is-loop">
     <div class="panel-buttons__default"><div class="panel-buttons__default-wrap">
       <div class="panel-buttons__default-column">
         <div class="panel-buttons__btn panel-buttons__btn-debug"></div>
@@ -81,14 +81,14 @@
       </div>
     </div></div>
     <div class="panel-buttons__loop">
-      <div class="panel-buttons__loop-selection">
+      <div class="panel-buttons__loop-selection js-loop-selection">
         <div class="panel-buttons__loop-headline">Число повторений</div>
-        <div class="panel-buttons__loop-slider">
-          <div class="panel-buttons__loop-arrow panel-buttons__loop-left"></div>
-          <div class="panel-buttons__loop-elements">
-            <div class="panel-buttons__loop-element">1</div>
+        <div class="panel-buttons__loop-slider js-loop-slider">
+          <div class="panel-buttons__loop-arrow panel-buttons__loop-left js-loop-slider-left"></div>
+          <div class="panel-buttons__loop-elements js-loop-slider-elements">
+            <div class="panel-buttons__loop-element js-loop-slider-element is-active" data-index="1">1</div>
           </div>
-          <div class="panel-buttons__loop-arrow panel-buttons__loop-right"></div>
+          <div class="panel-buttons__loop-arrow panel-buttons__loop-right js-loop-slider-right"></div>
         </div>
       </div>
       <div class="panel-buttons__loop-buttons"><div class="panel-buttons__loop-wrap">
