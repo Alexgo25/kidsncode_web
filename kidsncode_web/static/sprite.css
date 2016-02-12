@@ -9,27 +9,37 @@ Icon classes can be used entirely standalone. They are named after their origina
 <img class="icon-home" />
 ```
 */
-.icon-panel-headline {
+.icon-cube-moveable {
   background-image: url(sprite.png);
   background-position: 0px 0px;
-  width: 252px;
-  height: 70px;
+  width: 157px;
+  height: 131px;
 }
-.icon-panel-loop {
+.icon-cube {
   background-image: url(sprite.png);
-  background-position: 0px -70px;
-  width: 213px;
-  height: 89px;
+  background-position: 0px -131px;
+  width: 157px;
+  height: 131px;
+}
+.icon-robot-left {
+  background-image: url(sprite.png);
+  background-position: 0px -262px;
+  width: 96px;
+  height: 152px;
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
        (min-resolution: 192dpi) {
-  .icon-panel-headline {
+  .icon-cube-moveable {
     background-image: url(sprite@2x.png);
-    background-size: 252px 159px;
+    background-size: 157px 414px;
   }
-  .icon-panel-loop {
+  .icon-cube {
     background-image: url(sprite@2x.png);
-    background-size: 252px 159px;
+    background-size: 157px 414px;
+  }
+  .icon-robot-left {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 414px;
   }
 }
