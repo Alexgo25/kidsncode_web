@@ -23,7 +23,7 @@
           if (sliderElement.eq(i).hasClass('is-active')) {
             currentElement = sliderElement.eq(i);
             currentIndex = currentElement.data('index');
-            newElement = '<div class="panel-buttons__loop-element js-loop-slider-element is-active" data-index="'+ (currentIndex + 1) +'">'+ (currentIndex + 1) +'</div>';
+            newElement = '<div class="panel-controls__loop-element js-loop-slider-element is-active" data-index="'+ (currentIndex + 1) +'">'+ (currentIndex + 1) +'</div>';
             currentElement.css('marginLeft', '-100%').removeClass('is-active').addClass('is-left');
             sliderElements.append(newElement);
           }
@@ -45,7 +45,7 @@
           if (sliderElement.eq(i).hasClass('is-active')) {
             currentElement = sliderElement.eq(i);
             currentIndex = currentElement.data('index');
-            newElement = '<div class="panel-buttons__loop-element js-loop-slider-element is-active is-margin-left" data-index="'+ (currentIndex - 1) +'">'+ (currentIndex - 1) +'</div>';
+            newElement = '<div class="panel-controls__loop-element js-loop-slider-element is-active is-margin-left" data-index="'+ (currentIndex - 1) +'">'+ (currentIndex - 1) +'</div>';
             sliderElements.prepend(newElement);
             currentElement.removeClass('is-active').addClass('is-right');
             setTimeout(function(){            
