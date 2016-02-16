@@ -15,25 +15,29 @@
 
 <div class="window js-window">
   <div class="window-platform js-platform">
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
-    <div class="window-platform__cube-moveable js-platform-cube-moveable"><span class="sprite icon-cube-moveable"></span></div>
 
-    <div class="window-robot js-window-robot">
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+    <div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>
+
+    <div class="window-platform__cube-moveable js-platform-cube-moveable">
+      <span class="sprite icon-cube-moveable"></span>
+    </div>
+
+    <div class="window-robot js-robot">
       <div class="window-robot__control">
-        <div class="window-robot__control-walk"></div>
-        <div class="window-robot__control-reverse"></div>
-        <div class="window-robot__control-push"></div>
-        <div class="window-robot__control-jump"></div>
+        <div class="window-robot__control-walk js-robot-action" data-action="walk"></div>
+        <div class="window-robot__control-reverse js-robot-action" data-action="reverse"></div>
+        <div class="window-robot__control-push js-robot-action" data-action="push"></div>
+        <div class="window-robot__control-jump js-robot-action" data-action="jump"></div>
       </div>
       <div class="window-robot__model">
         <span class="sprite icon-robot-left"></span>
@@ -48,84 +52,52 @@
   <div class="controls__btn"></div>
 </div>
 
-<div class="panel js-panel unsel">
+<div class="panel unsel">
 
   <div class="panel-headline unsel"><div class="panel-headline__wrap">
     Программа
   </div></div>
 
-  <div class="panel-program"><div class="panel-program__wrap js-panel-program">
+  <div class="panel-program"><div class="panel-program__wrap js-program">
 
-    <div class="panel-program__content js-panel-program-content">
+    <div class="panel-program__content js-program-content">
       <div class="panel-program__headline">
         <div class="panel-program__headline-horizontal"></div>
         <div class="panel-program__headline-left"></div>
         <div class="panel-program__headline-right"></div>
       </div>
-      <div class="panel-program__actions">
-        <div class="panel-program__action"></div>
-        <div class="panel-program__action"></div>
-        <div class="panel-program__loop">
-          <div class="panel-program__loop-angle js-angle">
-            <div class="panel-program__loop-horizontal js-hor"></div>
-            <div class="panel-program__loop-vertical js-ver"></div>
-          </div>
-          <div class="panel-program__action"></div>
-          <div class="panel-program__action"></div>
-          <div class="panel-program__action"></div>
-          <div class="panel-program__action"></div>
-          <div class="panel-program__action"></div>
-        </div>
-        <div class="panel-program__action"></div>
-        <div class="panel-program__action"></div>
-        <div class="panel-program__action"></div>
-        <div class="panel-program__action"></div>
-        <div class="panel-program__action"></div>
-        <div class="panel-program__action"></div>
-        <div class="panel-program__action"></div> 
-        <div class="panel-program__loop">
-          <div class="panel-program__loop-angle js-angle">
-            <div class="panel-program__loop-horizontal js-hor"></div>
-            <div class="panel-program__loop-vertical js-ver"></div>
-          </div>
-          <div class="panel-program__action"></div>
-          <div class="panel-program__action"></div>
-          <div class="panel-program__action"></div>
-          <div class="panel-program__action"></div>
-          <div class="panel-program__action"></div>
-        </div> 
-      </div>
+      <div class="panel-program__actions js-program-actions"></div>
     </div>
 
   </div></div>
 
-  <div class="panel-buttons cf is-loop">
-    <div class="panel-buttons__default"><div class="panel-buttons__default-wrap">
-      <div class="panel-buttons__default-column">
-        <div class="panel-buttons__btn panel-buttons__btn-debug"></div>
+  <div class="panel-controls cf js-controls">
+    <div class="panel-controls__default"><div class="panel-controls__default-wrap">
+      <div class="panel-controls__default-column">
+        <div class="panel-controls__btn panel-controls__btn-debug"></div>
       </div>
-      <div class="panel-buttons__default-column">
-        <div class="panel-buttons__btn panel-buttons__btn-restart"></div>
-        <div class="panel-buttons__btn panel-buttons__btn-start"></div>
+      <div class="panel-controls__default-column">
+        <div class="panel-controls__btn panel-controls__btn-restart"></div>
+        <div class="panel-controls__btn panel-controls__btn-start"></div>
       </div>
-      <div class="panel-buttons__default-column">
-        <div class="panel-buttons__btn panel-buttons__btn-cancel"></div>
+      <div class="panel-controls__default-column">
+        <div class="panel-controls__btn panel-controls__btn-cancel"></div>
       </div>
     </div></div>
-    <div class="panel-buttons__loop">
-      <div class="panel-buttons__loop-selection js-loop-selection">
-        <div class="panel-buttons__loop-headline">Число повторений</div>
-        <div class="panel-buttons__loop-slider js-loop-slider">
-          <div class="panel-buttons__loop-arrow panel-buttons__loop-left js-loop-slider-left"></div>
-          <div class="panel-buttons__loop-elements js-loop-slider-elements">
-            <div class="panel-buttons__loop-element js-loop-slider-element is-active" data-index="1">1</div>
+    <div class="panel-controls__loop js-loop">
+      <div class="panel-controls__loop-selection js-loop-selection">
+        <div class="panel-controls__loop-headline">Число повторений</div>
+        <div class="panel-controls__loop-slider js-loop-slider">
+          <div class="panel-controls__loop-arrow panel-controls__loop-left js-loop-slider-left"></div>
+          <div class="panel-controls__loop-elements js-loop-slider-elements">
+            <div class="panel-controls__loop-element js-loop-slider-element is-active" data-index="1">1</div>
           </div>
-          <div class="panel-buttons__loop-arrow panel-buttons__loop-right js-loop-slider-right"></div>
+          <div class="panel-controls__loop-arrow panel-controls__loop-right js-loop-slider-right"></div>
         </div>
       </div>
-      <div class="panel-buttons__loop-buttons"><div class="panel-buttons__loop-wrap">
-        <div class="panel-buttons__loop-cancel"></div>
-        <div class="panel-buttons__loop-submit"></div>
+      <div class="panel-controls__loop-buttons"><div class="panel-controls__loop-wrap">
+        <div class="panel-controls__loop-cancel js-loop-cancel"></div>
+        <div class="panel-controls__loop-submit js-loop-submit"></div>
       </div></div>
     </div>
   </div>

@@ -160,13 +160,13 @@ body.is-noscroll {
   min-width: 310px;
   z-index: 1000; }
 
-.panel-buttons {
+.panel-controls {
   white-space: nowrap;
   word-wrap: normal;
   width: 100%;
   height: 30%;
   overflow: hidden; }
-  .panel-buttons__default, .panel-buttons__loop {
+  .panel-controls__default, .panel-controls__loop {
     white-space: nowrap;
     word-wrap: normal;
     display: inline-block;
@@ -175,32 +175,32 @@ body.is-noscroll {
     width: 100%;
     -webkit-transition: all 500ms ease-out;
     transition: all 500ms ease-out; }
-  .panel-buttons__default {
+  .panel-controls__default {
     margin-left: 0; }
-    .is-loop .panel-buttons__default {
+    .is-loop .panel-controls__default {
       margin-left: -100%; }
-    .panel-buttons__default-wrap {
+    .panel-controls__default-wrap {
       display: table;
       height: 100%;
       width: 100%;
       padding-top: 20px; }
-    .panel-buttons__default-column {
+    .panel-controls__default-column {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
       width: 33.333%; }
-  .panel-buttons__btn {
+  .panel-controls__btn {
     position: relative;
     margin: 0 auto;
     cursor: pointer; }
-    .panel-buttons__btn:after {
+    .panel-controls__btn:after {
       position: absolute;
       top: -20px;
       left: 0;
       right: 0;
       font-size: 12px;
       color: #000000; }
-  .panel-buttons__btn-debug {
+  .panel-controls__btn-debug {
     display: inline-block;
     height: 70px;
     width: 70px;
@@ -209,12 +209,12 @@ body.is-noscroll {
     border-color: #52b6aa;
     border-width: 0px;
     position: relative; }
-    .panel-buttons__btn-debug:hover {
+    .panel-controls__btn-debug:hover {
       background-color: #25776f;
       border-color: #25776f; }
-    .panel-buttons__btn-debug:after {
+    .panel-controls__btn-debug:after {
       content: 'Отладка'; }
-  .panel-buttons__btn-restart {
+  .panel-controls__btn-restart {
     display: inline-block;
     height: 70px;
     width: 70px;
@@ -223,12 +223,12 @@ body.is-noscroll {
     border-color: #f17d17;
     border-width: 0px;
     display: block; }
-    .panel-buttons__btn-restart:hover {
+    .panel-controls__btn-restart:hover {
       background-color: #de6b04;
       border-color: #de6b04; }
-    .panel-buttons__btn-restart:after {
+    .panel-controls__btn-restart:after {
       content: 'Заново'; }
-  .panel-buttons__btn-start {
+  .panel-controls__btn-start {
     display: inline-block;
     height: 70px;
     width: 70px;
@@ -237,12 +237,12 @@ body.is-noscroll {
     border-color: #f86161;
     border-width: 0px;
     margin-top: 55px; }
-    .panel-buttons__btn-start:hover {
+    .panel-controls__btn-start:hover {
       background-color: #e14444;
       border-color: #e14444; }
-    .panel-buttons__btn-start:after {
+    .panel-controls__btn-start:after {
       content: 'Запуск'; }
-  .panel-buttons__btn-cancel {
+  .panel-controls__btn-cancel {
     display: inline-block;
     height: 70px;
     width: 70px;
@@ -250,21 +250,21 @@ body.is-noscroll {
     border-radius: 70px;
     border-color: #a44db9;
     border-width: 0px; }
-    .panel-buttons__btn-cancel:hover {
+    .panel-controls__btn-cancel:hover {
       background-color: #711d86;
       border-color: #711d86; }
-    .panel-buttons__btn-cancel:after {
+    .panel-controls__btn-cancel:after {
       content: 'В начало'; }
-  .panel-buttons__loop-selection {
+  .panel-controls__loop-selection {
     height: 50%;
     text-align: center; }
-  .panel-buttons__loop-headline {
+  .panel-controls__loop-headline {
     font-size: 15px;
     color: #000000;
     padding: 20px 0 15px; }
-  .panel-buttons__loop-slider {
+  .panel-controls__loop-slider {
     height: 70px; }
-  .panel-buttons__loop-elements {
+  .panel-controls__loop-elements {
     position: relative;
     display: inline-block;
     width: 80px;
@@ -276,7 +276,7 @@ body.is-noscroll {
     word-wrap: normal;
     font-size: 0;
     vertical-align: middle; }
-  .panel-buttons__loop-element {
+  .panel-controls__loop-element {
     white-space: nowrap;
     word-wrap: normal;
     width: 100%;
@@ -287,37 +287,37 @@ body.is-noscroll {
     vertical-align: top;
     -webkit-transition: all 500ms ease-out;
     transition: all 500ms ease-out; }
-    .panel-buttons__loop-element.is-margin-left {
+    .panel-controls__loop-element.is-margin-left {
       margin-left: -100%; }
-  .panel-buttons__loop-arrow {
+  .panel-controls__loop-arrow {
     display: inline-block;
     width: 0;
     height: 0;
     border-style: solid;
     cursor: pointer;
     vertical-align: middle; }
-    .panel-buttons__loop-arrow:hover {
+    .panel-controls__loop-arrow:hover {
       opacity: 0.7; }
-    .panel-buttons__loop-arrow.is-disabled {
+    .panel-controls__loop-arrow.is-disabled {
       opacity: 0.5;
       cursor: default; }
-  .panel-buttons__loop-left {
+  .panel-controls__loop-left {
     border-width: 9px 15.6px 9px 0;
     border-color: transparent #000000 transparent transparent;
     margin-right: 15px; }
-  .panel-buttons__loop-right {
+  .panel-controls__loop-right {
     border-width: 9px 0 9px 15.6px;
     border-color: transparent transparent transparent #000000;
     margin-left: 15px; }
-  .panel-buttons__loop-buttons {
+  .panel-controls__loop-buttons {
     display: table;
     width: 100%;
     height: 50%;
     padding: 30px 40px 0; }
-  .panel-buttons__loop-wrap {
+  .panel-controls__loop-wrap {
     display: table-cell;
     vertical-align: middle; }
-  .panel-buttons__loop-cancel {
+  .panel-controls__loop-cancel {
     display: inline-block;
     height: 50px;
     width: 50px;
@@ -328,10 +328,10 @@ body.is-noscroll {
     cursor: pointer;
     position: relative;
     float: left; }
-    .panel-buttons__loop-cancel:hover {
+    .panel-controls__loop-cancel:hover {
       background-color: #711d86;
       border-color: #711d86; }
-    .panel-buttons__loop-cancel:after {
+    .panel-controls__loop-cancel:after {
       position: absolute;
       top: -20px;
       left: 1px;
@@ -339,7 +339,7 @@ body.is-noscroll {
       font-size: 12px;
       color: #000000;
       content: 'Отмена'; }
-  .panel-buttons__loop-submit {
+  .panel-controls__loop-submit {
     display: inline-block;
     height: 50px;
     width: 50px;
@@ -350,10 +350,10 @@ body.is-noscroll {
     cursor: pointer;
     position: relative;
     float: right; }
-    .panel-buttons__loop-submit:hover {
+    .panel-controls__loop-submit:hover {
       background-color: #25776f;
       border-color: #25776f; }
-    .panel-buttons__loop-submit:after {
+    .panel-controls__loop-submit:after {
       position: absolute;
       top: -20px;
       left: 3px;
@@ -443,8 +443,14 @@ body.is-noscroll {
     border-bottom-color: #e14444;
     height: 40px;
     position: relative;
-    border-radius: 4px; }
+    border-radius: 4px;
+    cursor: pointer; }
+    .panel-program__action.is-loopy {
+      background-color: #f17d17;
+      border-bottom-color: #de6b04; }
     .panel-program__loop .panel-program__action {
+      -webkit-transition: left 500ms ease-out;
+      transition: left 500ms ease-out;
       left: 44px; }
       .panel-program__loop .panel-program__action:nth-child(2) {
         margin-top: -4px; }
@@ -455,18 +461,6 @@ body.is-noscroll {
     -webkit-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
     opacity: 0; }
-    .panel-program__loop-angle:after {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 44px;
-      content: 'ПОВТОРИТЬ x2';
-      font-size: 13px;
-      color: #ffffff;
-      background-color: #a44db9;
-      padding: 16px 0 0 20px;
-      border-radius: 3px; }
     .panel-program__loop-angle.is-open {
       opacity: 1; }
   .panel-program__loop-horizontal {
@@ -478,7 +472,7 @@ body.is-noscroll {
     display: inline-block;
     border-radius: 3px;
     border-bottom: 6px solid #711d86; }
-    .panel-program__loop-horizontal.is-open {
+    .panel-program__loop-angle.is-open .panel-program__loop-horizontal {
       min-width: 210px; }
   .panel-program__loop-vertical {
     width: 68px;
@@ -490,8 +484,17 @@ body.is-noscroll {
     transition: all 100ms ease-out;
     border-radius: 3px;
     border-right: 28px solid #711d86; }
-    .panel-program__loop-vertical.is-open {
-      min-height: 248px; }
+  .panel-program__loop-title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 44px;
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #a44db9;
+    padding: 16px 0 0 20px;
+    border-radius: 3px; }
 
 .window {
   position: absolute;
@@ -556,7 +559,8 @@ body.is-noscroll {
   position: absolute;
   top: -133px;
   left: 20px;
-  z-index: 100; }
+  z-index: 100;
+  cursor: pointer; }
   .window-robot__control {
     position: relative;
     top: 80px;
@@ -575,7 +579,8 @@ body.is-noscroll {
       border-color: #f86161;
       border-width: 0px;
       -webkit-transition: all 500ms ease-out;
-      transition: all 500ms ease-out; }
+      transition: all 500ms ease-out;
+      cursor: pointer; }
       .window-robot__control-walk:hover, .window-robot__control-reverse:hover, .window-robot__control-push:hover, .window-robot__control-jump:hover {
         background-color: #e14444;
         border-color: #e14444; }
