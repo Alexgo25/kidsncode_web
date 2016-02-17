@@ -50,6 +50,7 @@
 
     setRobot: function() {
       nodes.robot.css('left', 20 + (properties.robot.position * 100) +'px' );
+      nodes.robot.data('direction', properties.robot.direction);
       if (properties.robot.top) {
         nodes.robot.css({top: '-=100px', zIndex: 200});
       }

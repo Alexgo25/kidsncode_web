@@ -35,7 +35,6 @@
           }
           $(this).toggleClass('is-loopy');
           methods.openLoopControl();
-          variables.newLoop.push($(this).removeClass('is-loop'));
         }
       }, '.js-program-action');
 

@@ -11,7 +11,8 @@ window.levels = {
     
     robot: {
       position: 2,
-      top: true
+      top: true,
+      direction: 'right'
     },
 
     award: {
