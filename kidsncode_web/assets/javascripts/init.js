@@ -11,11 +11,12 @@
   var methods = {
     init: function() {
       properties = window.levels[0];
+      methods.setRobot();
+      methods.setAward();
+      methods.setMoveables();
       methods.setPlatform();
       methods.setZindex();
       methods.setSpaces();
-      methods.setRobot();
-      methods.setAward();
     },
 
     setPlatform: function() {
@@ -48,7 +49,23 @@
     },
 
     setRobot: function() {
-      nodes.robot.css('left', 20 + (properties.robot.position * 100) );
+      nodes.robot.css('left', 20 + (properties.robot.position * 100) +'px' );
+      if (properties.robot.top) {
+        nodes.robot.css({top: '-=100px', zIndex: 200});
+      }
+    },
+
+    setMoveables: function() {
+      var moveablePositions = properties.moveable.positions;
+      for (var i = 0; i < moveablePositions.length; i++) {
+        var left = moveablePositions[i] * 100 + 'px';
+        nodes.platform
+          .prepend('<div class="window-platform__cube-moveable js-platform-cube-moveable"'
+            +'style="left: '+ left +'">'
+            +'<span class="sprite icon-cube-moveable"></span></div>');
+
+        console.log('ture');
+      }
     },
 
     setAward: function() {

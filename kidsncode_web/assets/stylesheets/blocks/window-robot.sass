@@ -18,8 +18,10 @@
       +circle(50px, $red1, $red1, 0px, $red2)
       transition: all 500ms ease-out
       cursor: pointer
+      opacity: 0
 
     .is-select &-walk
+      opacity: 1
       top: -100px
       left: -100px
       &:after
@@ -33,6 +35,7 @@
 
 
     .is-select &-reverse
+      opacity: 1
       left: -50px
       top: -170px
       &:after
@@ -45,6 +48,7 @@
         left: -10px
 
     .is-select &-push
+      opacity: 1
       left: 50px
       top: -170px
       &:after
@@ -57,6 +61,7 @@
         left: -5px
 
     .is-select &-jump
+      opacity: 1
       top: -100px
       left: 100px
       &:after
