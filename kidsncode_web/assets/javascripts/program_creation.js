@@ -1,4 +1,4 @@
-(function() {
+(function($, window, document, undefined) {
 
   var nodes = {
     body: $(document.body),
@@ -6,10 +6,6 @@
     program: $('.js-program'),
     controls: $('.js-controls'),
     loop: $('.js-loop')
-  };
-
-  var variables = {
-    newLoop: []
   };
 
   var methods = {
@@ -26,7 +22,8 @@
           event.preventDefault();
           event.stopPropagation();
           var type = $(this).data('action');
-          var newAction = '<div class="panel-program__action js-program-action" data-action="' + type + '"></div>';
+          var name = methods.getActionName(type);
+          var newAction = '<div class="panel-program__action js-program-action" data-action="' + type + '">'+ name +'</div>';
           nodes.program.find('.js-program-actions').append(newAction);
         }
       }, '.js-robot-action');
@@ -38,7 +35,6 @@
           }
           $(this).toggleClass('is-loopy');
           methods.openLoopControl();
-          variables.newLoop.push($(this).removeClass('is-loop'));
         }
       }, '.js-program-action');
 
@@ -89,10 +85,22 @@
       } else {
         nodes.controls.removeClass('is-loop');
       }
+    },
+
+    getActionName: function(type) {
+      if (type === 'walk') {
+        return 'шагнуть';
+      } else if (type === 'reverse') {
+        return 'повернуть';
+      } else if (type === 'push') {
+        return 'толкнуть';
+      } else if (type === 'jump') {
+        return 'запрыгнуть';
+      }
     }
     
   };
 
   methods.setEvents();
 
-})();
+})(jQuery, window, document);

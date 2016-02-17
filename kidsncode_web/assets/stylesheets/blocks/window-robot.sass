@@ -18,8 +18,10 @@
       +circle(50px, $red1, $red1, 0px, $red2)
       transition: all 500ms ease-out
       cursor: pointer
+      opacity: 0
 
     .is-select &-walk
+      opacity: 1
       top: -100px
       left: -100px
       &:after
@@ -28,8 +30,12 @@
         color: $black1
         text-transform: uppercase
         content: 'шагнуть'
+        top: -15px
+        left: -3px
+
 
     .is-select &-reverse
+      opacity: 1
       left: -50px
       top: -170px
       &:after
@@ -38,8 +44,11 @@
         color: $black1
         text-transform: uppercase
         content: 'повернуть'
+        top: -15px
+        left: -10px
 
     .is-select &-push
+      opacity: 1
       left: 50px
       top: -170px
       &:after
@@ -48,8 +57,11 @@
         color: $black1
         text-transform: uppercase
         content: 'толкнуть'
+        top: -15px
+        left: -5px
 
     .is-select &-jump
+      opacity: 1
       top: -100px
       left: 100px
       &:after
@@ -58,6 +70,8 @@
         color: $black1
         text-transform: uppercase
         content: 'прыгнуть'
+        top: -15px
+        left: -6px
 
   &__model
     position: absolute

@@ -19,7 +19,7 @@ gulp.task('sass', function() {
 gulp.task('js', function(){
   return gulp.src('kidsncode_web/assets/javascripts/*.js')
     .pipe(concat('application.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('kidsncode_web/static'));
 });
 
