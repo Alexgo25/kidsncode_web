@@ -88,14 +88,15 @@
     },
 
     getActionName: function(type) {
-      if (type === 'walk') {
-        return 'шагнуть';
-      } else if (type === 'reverse') {
-        return 'повернуть';
-      } else if (type === 'push') {
-        return 'толкнуть';
-      } else if (type === 'jump') {
-        return 'запрыгнуть';
+      switch (type) {
+        case 'walk':
+          return 'шагнуть';
+        case 'reverse':
+          return 'повернуть';
+        case 'push':
+          return 'толкнуть';
+        case 'jump':
+          return 'запрыгнуть';
       }
     }
     

@@ -64,8 +64,6 @@
           .prepend('<div class="window-platform__cube-moveable js-platform-cube-moveable"'
             +'style="left: '+ left +'">'
             +'<span class="sprite icon-cube-moveable"></span></div>');
-
-        console.log('ture');
       }
     },
 

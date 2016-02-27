@@ -1,22 +1,22 @@
 window.levels = {
   0: {
     platform: {
-      quantity: 8,
-      spaceIndexes: [3, 6]
+      quantity: 10,
+      spaceIndexes: [5, 8]
     },
     
     moveable: {
-      positions: [2, 5]
+      positions: [4, 7]
     },
     
     robot: {
       position: 2,
-      top: true,
+      top: false,
       direction: 'right'
     },
 
     award: {
-      position: 8,
+      position: 9,
       url: 'http://cs631829.vk.me/v631829533/2cb3/V3icNf7q5fs.jpg'
     }
   }

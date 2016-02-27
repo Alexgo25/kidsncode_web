@@ -1,22 +1,22 @@
 window.levels = {
   0: {
     platform: {
-      quantity: 8,
-      spaceIndexes: [3, 6]
+      quantity: 10,
+      spaceIndexes: [5, 8]
     },
     
     moveable: {
-      positions: [2, 5]
+      positions: [4, 7]
     },
     
     robot: {
       position: 2,
-      top: true,
+      top: false,
       direction: 'right'
     },
 
     award: {
-      position: 8,
+      position: 9,
       url: 'http://cs631829.vk.me/v631829533/2cb3/V3icNf7q5fs.jpg'
     }
   }
@@ -27,41 +27,127 @@ window.levels = {
     robot: $('.js-robot'),
     program: $('.js-program'),
     controls: $('.js-controls'),
-    loop: $('.js-loop')
+    loop: $('.js-loop'),
+    platform: $('.js-platform')
   };
+
+  var variables = {
+    actionIndex: 0
+  };
+
   var methods = {
     setEvents: function() {
 
       nodes.controls.on({
         click: function() {
-          var actions = nodes.program.find('.js-program-actions').children();
-          for (var i = 0; i < actions.length; i++) {
-            if (actions.eq(i).hasClass('js-program-action')) {
-              switch (actions.eq(i).data('action')) {
-                case 'walk':
-                  methods.robotWalk();
-                case 'reverse':
-                  methods.robotReverse();
-                case 'push':
-                  methods.robotPush();
-                case 'jump':
-                  methods.robotJump();
-              }
-            }
-          }
+          methods.setAction();
         }
       }, '.js-controls-start');
 
     },
 
-    robotWalk: function() {
-      if (nodes.robot.data('direction') === 'right'){
-        nodes.robot.animate({left: '+=100px' }, 1000);
-      } else if (nodes.robot.data('direction') === 'left') {
-        nodes.robot.animate({left: '-=100px' }, 1000);
+    setAction: function() {
+      var actions = nodes.program.find('.js-program-actions').children();
+      var i = variables.actionIndex;
+      if (actions.eq(i).hasClass('js-program-action')) {
+        switch (actions.eq(i).data('action')) {
+          case 'walk':
+            methods.robotWalk();
+          case 'reverse':
+            methods.robotReverse();
+          case 'push':
+            methods.robotPush();
+          case 'jump':
+            methods.robotJump();
+        }
       }
+      variables.actionIndex++;
+    },
+
+    robotWalk: function() {
+      var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
+      if (methods.checkWalk(direction + 1)) {
+        nodes.robot.animate({ left: direction + '=100px' }, 1000, function() { methods.setAction() });
+      }
+    },
+
+    robotReverse: function() {
+      return;
+    },
+
+    robotPush: function() {
+      var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
+      var moveable = methods.checkPush(direction + 1);
+      if (moveable.exist) {
+        methods.getCubeNode(moveable.left, moveable.top)
+          .animate({ left: direction + '=100px' }, 1000, function() { methods.setAction() });
+      }
+    },
+
+    robotJump: function() {
+      return;
+    },
+
+    getRobotPosition: function() {
+      var position = {};
+      var left  = parseInt(nodes.robot.css('left'));
+      var top = parseInt(nodes.robot.css('top'));
+      position.left = (left - 20)/100;
+      position.top = (top + 133)/100;
+      return position;
+    },
+
+    getCubesPosition: function() {
+      var cubes = nodes.platform.find('.js-platform-cube-moveable');
+      var positions = [];
+      var left;
+      var top;
+      for (var i = 0; i < cubes.length; i++) {
+        left  = parseInt(cubes.eq(i).css('left'))/100;
+        top = (parseInt(cubes.eq(i).css('top')) + 100)/100;
+        positions[i] = {'left': left, 'top': top};
+      }
+      return positions;
+    },
+
+    getCubeNode: function(left, top) {
+      var leftCss = (left * 100) + 'px';
+      var topCss = ((top * 100) - 100) + 'px';
+      var node = nodes.platform.find('.js-platform-cube-moveable[style="left: ' + leftCss 
+                                                                    + '; top: ' + topCss +';"]');
+      node.addClass('akscma[sodcikn');
+      return node;
+    },
+
+    checkWalk: function(direction) {
+      var robotPosition = methods.getRobotPosition();
+      var cubesPosition = methods.getCubesPosition();
+      var errors = 0;
+      for (var i = 0; i < cubesPosition.length; i++) {
+        if ( ((robotPosition.left + parseInt(direction)) === cubesPosition[i].left) && (robotPosition.top === cubesPosition[i].top) ) {  
+          errors++;
+        }
+      }
+      return (errors > 0) ? false : true;
+    },
+
+    checkPush: function(direction) {
+      var robotPosition = methods.getRobotPosition();
+      var cubesPosition = methods.getCubesPosition();
+      var moveable = { exist: false };
+      for (var i = 0; i < cubesPosition.length; i++) {
+        if ( ((robotPosition.left + parseInt(direction)) === cubesPosition[i].left) && (robotPosition.top === cubesPosition[i].top) ) {  
+          moveable = {
+            exist: true,
+            left: cubesPosition[i].left,
+            top: cubesPosition[i].top
+          };
+        }
+      }
+      return moveable;
     }
-    
+
+
   };
 
   methods.setEvents();
@@ -157,8 +243,6 @@ window.levels = {
           .prepend('<div class="window-platform__cube-moveable js-platform-cube-moveable"'
             +'style="left: '+ left +'">'
             +'<span class="sprite icon-cube-moveable"></span></div>');
-
-        console.log('ture');
       }
     },
 
@@ -413,14 +497,15 @@ window.levels = {
     },
 
     getActionName: function(type) {
-      if (type === 'walk') {
-        return 'шагнуть';
-      } else if (type === 'reverse') {
-        return 'повернуть';
-      } else if (type === 'push') {
-        return 'толкнуть';
-      } else if (type === 'jump') {
-        return 'запрыгнуть';
+      switch (type) {
+        case 'walk':
+          return 'шагнуть';
+        case 'reverse':
+          return 'повернуть';
+        case 'push':
+          return 'толкнуть';
+        case 'jump':
+          return 'запрыгнуть';
       }
     }
     
