@@ -1,25 +1,36 @@
-(function($, window, document, undefined) {
-  var nodes = {
+window.animations = {
+  nodes: {
     body: $(document.body),
-    award: $('.js-award')
-  };
-  var methods = {
+    award: $('.js-award'),
+    robot: $('.js-robot')
+  },
+
+  methods: {
     awardTop: function() {
-      nodes.award.animate({
+      window.animations.nodes.award.animate({
         top: '-=50'
       }, 1500, function() {
-        methods.awardBottom()
+        window.animations.methods.awardBottom()
       });
     },
+    
     awardBottom: function() {
-      nodes.award.animate({
+      window.animations.nodes.award.animate({
         top: '+=50'
       }, 1500, function() {
-        methods.awardTop()
+        window.animations.methods.awardTop()
       });
+    },
+
+    robotWalk: function() {      
+      for (var i = 1; i <= 9; i++) {
+        (function(index) {
+          setTimeout(function(){
+            window.animations.nodes.robot.find('.js-robot-model').html('').append('<span class="sprite icon-robot-walk-right-'+ index +'"></span>');
+          }, index * 110);
+        })(i);
+      }
     }
     
-  };
-
-  methods.awardTop();
-})(jQuery, window, document);
+  }
+};

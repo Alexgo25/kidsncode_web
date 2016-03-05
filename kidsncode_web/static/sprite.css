@@ -27,19 +27,109 @@ Icon classes can be used entirely standalone. They are named after their origina
   width: 96px;
   height: 152px;
 }
+.icon-robot-walk-right-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -414px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -566px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -718px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -1630px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -1022px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-6 {
+  background-image: url(sprite.png);
+  background-position: 0px -1174px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-7 {
+  background-image: url(sprite.png);
+  background-position: 0px -1326px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-8 {
+  background-image: url(sprite.png);
+  background-position: 0px -1478px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-9 {
+  background-image: url(sprite.png);
+  background-position: 0px -870px;
+  width: 96px;
+  height: 152px;
+}
 
 @media (-webkit-min-device-pixel-ratio: 2),
        (min-resolution: 192dpi) {
   .icon-cube-moveable {
     background-image: url(sprite@2x.png);
-    background-size: 157px 414px;
+    background-size: 157px 1782px;
   }
   .icon-cube {
     background-image: url(sprite@2x.png);
-    background-size: 157px 414px;
+    background-size: 157px 1782px;
   }
   .icon-robot-left {
     background-image: url(sprite@2x.png);
-    background-size: 157px 414px;
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-6 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-7 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-8 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
+  }
+  .icon-robot-walk-right-9 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 1782px;
   }
 }

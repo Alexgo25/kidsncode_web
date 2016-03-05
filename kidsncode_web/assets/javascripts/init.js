@@ -17,6 +17,7 @@
       methods.setPlatform();
       methods.setZindex();
       methods.setSpaces();
+      window.animations.methods.awardTop();
     },
 
     setPlatform: function() {
@@ -30,9 +31,15 @@
 
     setZindex: function() {
       var i = 0;
+      var j = 0;
       var cube = nodes.platform.find('.js-platform-cube');
       for (; i < cube.length; i++) {
         cube.eq(i).css('zIndex', i + 1);
+      }
+
+      var moveable = nodes.platform.find('.js-platform-cube-moveable');
+      for (; j < moveable.length; j++) {
+        moveable.eq(j).css('zIndex', 299 - j);
       }
     },
 
@@ -57,12 +64,13 @@
     },
 
     setMoveables: function() {
-      var moveablePositions = properties.moveable.positions;
-      for (var i = 0; i < moveablePositions.length; i++) {
-        var left = moveablePositions[i] * 100 + 'px';
+      var moveable = properties.moveable;
+      for (var i = 0; i < moveable.x.length; i++) {
+        var left = (moveable.x[i] * 100) + 'px';
+        var top = ((moveable.y[i] * (-100)) - 100) +'px';
         nodes.platform
           .prepend('<div class="window-platform__cube-moveable js-platform-cube-moveable"'
-            +'style="left: '+ left +'">'
+            +'style="left: '+ left +'; top: ' + top + '">'
             +'<span class="sprite icon-cube-moveable"></span></div>');
       }
     },

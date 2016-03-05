@@ -14,13 +14,11 @@
 
   var methods = {
     setEvents: function() {
-
       nodes.controls.on({
         click: function() {
           methods.setAction();
         }
       }, '.js-controls-start');
-
     },
 
     setAction: function() {
@@ -44,6 +42,7 @@
     robotWalk: function() {
       var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
       if (methods.checkWalk(direction + 1)) {
+        window.animations.methods.robotWalk();
         nodes.robot.animate({ left: direction + '=100px' }, 1000, function() { methods.setAction() });
       }
     },
@@ -56,8 +55,8 @@
       var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
       var moveable = methods.checkPush(direction + 1);
       if (moveable.exist) {
-        methods.getCubeNode(moveable.left, moveable.top)
-          .animate({ left: direction + '=100px' }, 1000, function() { methods.setAction() });
+        var moveableCube = methods.getCubeNode(moveable.left, moveable.top);                
+        moveableCube.animate({ left: direction + '=100px' }, 1000, function() { methods.setAction() });
       }
     },
 
@@ -90,10 +89,13 @@
     getCubeNode: function(left, top) {
       var leftCss = (left * 100) + 'px';
       var topCss = ((top * 100) - 100) + 'px';
-      var node = nodes.platform.find('.js-platform-cube-moveable[style="left: ' + leftCss 
-                                                                    + '; top: ' + topCss +';"]');
-      node.addClass('akscma[sodcikn');
-      return node;
+      var cubes = nodes.platform.find('.js-platform-cube-moveable');
+      var i = 0;
+      for (; i < cubes.length; i++) {
+        if (cubes.eq(i).css('left') === leftCss && cubes.eq(i).css('top') === topCss) {
+          return cubes.eq(i);
+        }
+      }
     },
 
     checkWalk: function(direction) {
@@ -111,7 +113,7 @@
     checkPush: function(direction) {
       var robotPosition = methods.getRobotPosition();
       var cubesPosition = methods.getCubesPosition();
-      var moveable = { exist: false };
+      var moveable = { exist: false , left: undefined, top: undefined, pushable: false, fallable: false };
       for (var i = 0; i < cubesPosition.length; i++) {
         if ( ((robotPosition.left + parseInt(direction)) === cubesPosition[i].left) && (robotPosition.top === cubesPosition[i].top) ) {  
           moveable = {
@@ -120,10 +122,9 @@
             top: cubesPosition[i].top
           };
         }
-      }
+      }       
       return moveable;
     }
-
 
   };
 
