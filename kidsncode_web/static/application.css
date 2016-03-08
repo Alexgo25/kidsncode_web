@@ -132,10 +132,19 @@ span.sprite {
 body.is-noscroll {
   overflow: hidden; }
 
+body {
+  background-color: #f7d37f;
+  background: -webkit-linear-gradient(center, #f5cb6e, #f7d37f);
+  background: linear-gradient(to center, #f5cb6e, #f7d37f); }
+
 .controls {
-  position: absolute;
-  top: 20px;
-  left: 20px; }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 75%;
+  padding: 20px;
+  background-color: #f7d37f;
+  z-index: 1000; }
   .controls__btn {
     display: inline-block;
     height: 50px;
@@ -153,7 +162,7 @@ body.is-noscroll {
       border-color: #D29215; }
 
 .panel {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
@@ -519,10 +528,7 @@ body.is-noscroll {
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: #f7d37f;
   width: 75%;
-  background: -webkit-linear-gradient(center, #f5cb6e, #f7d37f);
-  background: linear-gradient(to center, #f5cb6e, #f7d37f);
   overflow-x: auto; }
   .window::-webkit-scrollbar {
     display: none; }
@@ -553,9 +559,7 @@ body.is-noscroll {
   width: 96px;
   height: 96px;
   position: absolute;
-  top: -160px;
-  left: 20px;
-  z-index: 300;
+  z-index: 5000;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -569,27 +573,12 @@ body.is-noscroll {
   word-wrap: normal;
   font-size: 0; }
   .window-platform__cube {
-    position: relative;
-    display: inline-block;
-    margin-left: -57px;
-    width: 157px;
-    height: 133px;
-    white-space: nowrap;
-    word-wrap: normal;
-    vertical-align: top; }
-    .window-platform__cube:first-child {
-      margin-left: 0; }
-    .window-platform__cube-moveable {
-      position: absolute;
-      left: 500px;
-      top: -100px;
-      z-index: 200; }
+    position: absolute; }
 
 .window-robot {
   position: absolute;
   top: -133px;
   left: 20px;
-  z-index: 100;
   cursor: pointer; }
   .window-robot__control {
     position: relative;
@@ -620,7 +609,8 @@ body.is-noscroll {
     .is-select .window-robot__control-walk {
       opacity: 1;
       top: -100px;
-      left: -100px; }
+      left: -100px;
+      z-index: 5000; }
       .is-select .window-robot__control-walk:after {
         position: absolute;
         font-size: 12px;
@@ -632,7 +622,8 @@ body.is-noscroll {
     .is-select .window-robot__control-reverse {
       opacity: 1;
       left: -50px;
-      top: -170px; }
+      top: -170px;
+      z-index: 5000; }
       .is-select .window-robot__control-reverse:after {
         position: absolute;
         font-size: 12px;
@@ -644,7 +635,8 @@ body.is-noscroll {
     .is-select .window-robot__control-push {
       opacity: 1;
       left: 50px;
-      top: -170px; }
+      top: -170px;
+      z-index: 5000; }
       .is-select .window-robot__control-push:after {
         position: absolute;
         font-size: 12px;
@@ -656,7 +648,8 @@ body.is-noscroll {
     .is-select .window-robot__control-jump {
       opacity: 1;
       top: -100px;
-      left: 100px; }
+      left: 100px;
+      z-index: 5000; }
       .is-select .window-robot__control-jump:after {
         position: absolute;
         font-size: 12px;
