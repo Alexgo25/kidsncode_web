@@ -1,24 +1,111 @@
 window.levels = {
-  0: {
-    platform: {
-      quantity: 10,
-      spaceIndexes: [8]
-    },
-    
-    moveable: {    
-      x: [0, 7, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7],
-      y: [0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3]
+  0: {    
+    cubes: {    
+      x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 4, 5, 6, 7, 9, 0, 5, 6, 7, 9, 0, 6, 7, 9, 0, 7, 1, 2],
+      y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0 , 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
     },
     
     robot: {
-      position: 2,
-      top: false,
+      x: 6,
+      y: 4,
       direction: 'right'
     },
 
     award: {
-      position: 9,
-      url: 'http://cs631829.vk.me/v631829533/2cb3/V3icNf7q5fs.jpg'
+      x: [1, 11],
+      y: [1, 1],
+      url: ['http://cs631829.vk.me/v631829533/2cb3/V3icNf7q5fs.jpg', 'http://cs622119.vk.me/v622119363/362dd/3kAhx-v-dQ8.jpg']
+    }
+  }
+};
+
+window.properties = window.levels[0];
+
+window.globals = {
+  nodes: {
+    body: $(document.body),
+    award: $('.js-award'),
+    robot: $('.js-robot'),
+    win: $('.js-window'),
+    platform: $('.js-platform')
+  },
+
+  methods: {
+    animations: {
+      
+      awardTop: function() {
+        window.globals.nodes.award.animate({
+          top: '-=50'
+        }, 1500, function() {
+          $('.js-award').animate({
+            top: '+=50'
+          }, 1500, function() {
+            window.globals.methods.animations.awardTop();
+          });
+        });
+      },
+
+      robotWalk: function() {      
+        for (var i = 1; i <= 9; i++) {
+          (function(index) {
+            setTimeout(function(){
+              window.globals.nodes.robot.find('.js-robot-model').html('').append('<span class="sprite icon-robot-walk-right-'+ index +'"></span>');
+            }, index * 110);
+          })(i);
+        }
+      }
+    },
+
+    getCubesPositions: function() {
+      var items = window.globals.nodes.win.find('.js-platform-cube');
+      var positions = { x: [], y: [] };
+      for (var i = 0; i < items.length; i++) {      
+        positions.x.push(Math.abs(parseInt(items.eq(i).css('left'))/100));
+        positions.y.push(Math.abs((parseInt(items.eq(i).css('top')) + 100)/(-100)));
+      }
+      return positions;
+    },
+
+    getRobotPosition: function() {
+      var position = {};
+      var left  = parseInt(window.globals.nodes.robot.css('left'));
+      var top = parseInt(window.globals.nodes.robot.css('top'));
+      position.x = (left - 20)/100;
+      position.y = (top + 133)/-100;
+      return position;
+    },
+
+    getCubeNode: function(x, y) {
+      var leftCss = (x * 100) + 'px';
+      var topCss = ((y * -100) - 100) + 'px';
+      var cubes = window.globals.nodes.platform.find('.js-platform-cube');
+      var i = 0;
+      for (; i < cubes.length; i++) {
+        if (cubes.eq(i).css('left') === leftCss && cubes.eq(i).css('top') === topCss) {
+          return cubes.eq(i);
+        }
+      }
+    },
+
+    setZindexes: function() {
+      var i = 0;
+      var zindex;
+      var cube;
+      var robot = window.globals.nodes.robot;
+      var robotPosition = window.globals.methods.getRobotPosition();
+      var positions = window.globals.methods.getCubesPositions();
+      for (; i < positions.y.length; i++) {
+        zindex = (100 * positions.y[i] + positions.x[i]);
+        cube = window.globals.methods.getCubeNode(positions.x[i], positions.y[i]);
+        cube.css('zIndex', zindex);
+      }
+      robot.find('.js-robot-model').css('zIndex', 100 * robotPosition.y + robotPosition.x);
+    },
+
+    setFallingZindex: function(cube) {
+      var zindex = parseInt(cube.node.css('zIndex')) + parseInt(cube.direction + '1') + (cube.fallRange * -100);     
+      console.log(zindex);
+      cube.node.css('zIndex', (zindex));
     }
   }
 };
@@ -36,11 +123,16 @@ window.levels = {
     actionIndex: 0
   };
 
+  var helper = window.globals.methods;
+  var animation = window.globals.methods.animations;
+  var properties = window.properties;
+
   var methods = {
     setEvents: function() {
       nodes.controls.on({
         click: function() {
           methods.setAction();
+          nodes.robot.removeClass('is-select');
         }
       }, '.js-controls-start');
     },
@@ -52,12 +144,16 @@ window.levels = {
         switch (actions.eq(i).data('action')) {
           case 'walk':
             methods.robotWalk();
+            break
           case 'reverse':
             methods.robotReverse();
+            break
           case 'push':
             methods.robotPush();
+            break
           case 'jump':
             methods.robotJump();
+            break
         }
       }
       variables.actionIndex++;
@@ -66,8 +162,13 @@ window.levels = {
     robotWalk: function() {
       var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
       if (methods.checkWalk(direction + 1)) {
-        window.animations.methods.robotWalk();
-        nodes.robot.animate({ left: direction + '=100px' }, 1000, function() { methods.setAction() });
+        animation.robotWalk();
+        nodes.robot.animate({ left: direction + '=100px' }, 1000, function() {
+          helper.setZindexes();
+          methods.setAction();
+        });
+      } else {
+        throw new Error('Walk mistake');
       }
     },
 
@@ -78,9 +179,24 @@ window.levels = {
     robotPush: function() {
       var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
       var moveable = methods.checkPush(direction + 1);
-      if (moveable.exist) {
-        var moveableCube = methods.getCubeNode(moveable.left, moveable.top);                
-        moveableCube.animate({ left: direction + '=100px' }, 1000, function() { methods.setAction() });
+      var moveableCube;
+      if (moveable.exist && moveable.pushable) {
+        moveable.direction = direction;
+        console.log(moveable);
+        moveableCube = helper.getCubeNode(moveable.x, moveable.y);
+        if (moveable.fallable) {
+          moveableCube.animate({ left: direction + '=100px' }, 1000, function() {
+            helper.setFallingZindex(moveable);
+            moveableCube.animate({ top: '+='+ (moveable.fallRange * 100) + 'px'}, 250, function() { methods.setAction() });
+          });
+        } else {          
+          moveableCube.animate({ left: direction + '=100px' }, 1000, function() { 
+            helper.setZindexes();
+            methods.setAction(); 
+          });
+        }                
+      } else {
+        throw new Error('Push mistake');
       }
     },
 
@@ -92,34 +208,22 @@ window.levels = {
       var position = {};
       var left  = parseInt(nodes.robot.css('left'));
       var top = parseInt(nodes.robot.css('top'));
-      position.left = (left - 20)/100;
-      position.top = (top + 133)/100;
+      position.x = (left - 20)/100;
+      position.y = (top + 133)/-100;
       return position;
     },
 
     getCubesPosition: function() {
-      var cubes = nodes.platform.find('.js-platform-cube-moveable');
+      var cubes = nodes.platform.find('.js-platform-cube');
       var positions = [];
       var left;
       var top;
       for (var i = 0; i < cubes.length; i++) {
-        left  = parseInt(cubes.eq(i).css('left'))/100;
-        top = (parseInt(cubes.eq(i).css('top')) + 100)/100;
-        positions[i] = {'left': left, 'top': top};
+        left = Math.abs(parseInt(cubes.eq(i).css('left'))/100);
+        top = Math.abs((parseInt(cubes.eq(i).css('top')) + 100)/-100);
+        positions[i] = {'x': left, 'y': top};
       }
       return positions;
-    },
-
-    getCubeNode: function(left, top) {
-      var leftCss = (left * 100) + 'px';
-      var topCss = ((top * 100) - 100) + 'px';
-      var cubes = nodes.platform.find('.js-platform-cube-moveable');
-      var i = 0;
-      for (; i < cubes.length; i++) {
-        if (cubes.eq(i).css('left') === leftCss && cubes.eq(i).css('top') === topCss) {
-          return cubes.eq(i);
-        }
-      }
     },
 
     checkWalk: function(direction) {
@@ -127,7 +231,7 @@ window.levels = {
       var cubesPosition = methods.getCubesPosition();
       var errors = 0;
       for (var i = 0; i < cubesPosition.length; i++) {
-        if ( ((robotPosition.left + parseInt(direction)) === cubesPosition[i].left) && (robotPosition.top === cubesPosition[i].top) ) {  
+        if ( ((robotPosition.x + parseInt(direction)) === cubesPosition[i].x) && (robotPosition.y === cubesPosition[i].y) ) {  
           errors++;
         }
       }
@@ -137,16 +241,37 @@ window.levels = {
     checkPush: function(direction) {
       var robotPosition = methods.getRobotPosition();
       var cubesPosition = methods.getCubesPosition();
-      var moveable = { exist: false , left: undefined, top: undefined, pushable: false, fallable: false };
+      var moveable = { exist: false, pushable: true, fallable: true, x: null, y: null };
       for (var i = 0; i < cubesPosition.length; i++) {
-        if ( ((robotPosition.left + parseInt(direction)) === cubesPosition[i].left) && (robotPosition.top === cubesPosition[i].top) ) {  
-          moveable = {
-            exist: true,
-            left: cubesPosition[i].left,
-            top: cubesPosition[i].top
-          };
+        if ( ((robotPosition.x + parseInt(direction)) === cubesPosition[i].x) && (robotPosition.y === cubesPosition[i].y) ) {  
+          moveable.exist = true;
+          moveable.x = cubesPosition[i].x;
+          moveable.y = cubesPosition[i].y;
         }
-      }       
+      }
+
+      for (var j = 0; j < cubesPosition.length; j++) {
+        if (cubesPosition[j].x === moveable.x + 1 && cubesPosition[j].y === moveable.y) {
+          moveable.pushable = false;
+        } else if (cubesPosition[j].x === moveable.x && cubesPosition[j].y === moveable.y + 1) {
+          moveable.pushable = false;
+        } else if (cubesPosition[j].x === moveable.x + 1 && cubesPosition[j].y === moveable.y - 1) {
+          moveable.fallable = false;
+        }
+      }
+
+      if (moveable.fallable) {
+        var existCubes = 0;
+        for (var q = 0; q < cubesPosition.length; q++) {
+          if (cubesPosition[q].x === moveable.x + 1 && cubesPosition[q].y < moveable.y) {
+            existCubes++;
+          }
+        }
+        moveable.fallRange = moveable.y - existCubes;
+      }
+
+      moveable.node = helper.getCubeNode(moveable.x, moveable.y);
+
       return moveable;
     }
 
@@ -154,42 +279,6 @@ window.levels = {
 
   methods.setEvents();
 })(jQuery, window, document);
-window.animations = {
-  nodes: {
-    body: $(document.body),
-    award: $('.js-award'),
-    robot: $('.js-robot')
-  },
-
-  methods: {
-    awardTop: function() {
-      window.animations.nodes.award.animate({
-        top: '-=50'
-      }, 1500, function() {
-        window.animations.methods.awardBottom()
-      });
-    },
-    
-    awardBottom: function() {
-      window.animations.nodes.award.animate({
-        top: '+=50'
-      }, 1500, function() {
-        window.animations.methods.awardTop()
-      });
-    },
-
-    robotWalk: function() {      
-      for (var i = 1; i <= 9; i++) {
-        (function(index) {
-          setTimeout(function(){
-            window.animations.nodes.robot.find('.js-robot-model').html('').append('<span class="sprite icon-robot-walk-right-'+ index +'"></span>');
-          }, index * 110);
-        })(i);
-      }
-    }
-    
-  }
-};
 (function($, window, document, undefined) {
   var nodes = {
     body: $(document.body),
@@ -198,78 +287,46 @@ window.animations = {
     award: $('.js-award')
   };
 
-  var properties;
+  var properties = window.properties;
 
   var methods = {
     init: function() {
-      properties = window.levels[0];
+      methods.setCubes();
       methods.setRobot();
       methods.setAward();
-      methods.setMoveables();
-      methods.setPlatform();
-      methods.setZindex();
-      methods.setSpaces();
-      window.animations.methods.awardTop();
-    },
-
-    setPlatform: function() {
-      var i = 0;
-      var cube = '<div class="window-platform__cube js-platform-cube"><span class="sprite icon-cube"></span></div>';
-      var platformQuantity = properties.platform.quantity;
-      for (; i <= platformQuantity; i++) {
-        nodes.platform.prepend(cube);
-      }
-    },
-
-    setZindex: function() {
-      var i = 0;
-      var j = 0;
-      var cube = nodes.platform.find('.js-platform-cube');
-      for (; i < cube.length; i++) {
-        cube.eq(i).css('zIndex', i + 1);
-      }
-
-      var moveable = nodes.platform.find('.js-platform-cube-moveable');
-      for (; j < moveable.length; j++) {
-        moveable.eq(j).css('zIndex', 299 - j);
-      }
-    },
-
-    setSpaces: function() {
-      var cubes = nodes.platform.find('.js-platform-cube');
-      var spaceIndexes = properties.platform.spaceIndexes;
-      for (var i = 0; i < cubes.length; i++) { 
-        for (var j = 0; j < spaceIndexes.length; j++) { 
-          if (i === spaceIndexes[j]) {
-            cubes.eq(i).html('');
-          }
-        }
-      }
+      window.globals.methods.setZindexes();
+      window.globals.methods.animations.awardTop();
     },
 
     setRobot: function() {
-      nodes.robot.css('left', 20 + (properties.robot.position * 100) +'px' );
+      nodes.robot.css({
+        'left': 20 + (properties.robot.x * 100) +'px',
+        'top': ((properties.robot.y * (-100)) - 133) +'px'
+      });
       nodes.robot.data('direction', properties.robot.direction);
-      if (properties.robot.top) {
-        nodes.robot.css({top: '-=100px', zIndex: 200});
-      }
     },
 
-    setMoveables: function() {
-      var moveable = properties.moveable;
-      for (var i = 0; i < moveable.x.length; i++) {
-        var left = (moveable.x[i] * 100) + 'px';
-        var top = ((moveable.y[i] * (-100)) - 100) +'px';
+    setCubes: function() {
+      var cubes = properties.cubes;
+      for (var i = 0; i < cubes.x.length; i++) {
+        var left = (cubes.x[i] * 100) + 'px';
+        var top = ((cubes.y[i] * (-100)) - 100) +'px';
         nodes.platform
-          .prepend('<div class="window-platform__cube-moveable js-platform-cube-moveable"'
+          .prepend('<div class="window-platform__cube js-platform-cube"'
             +'style="left: '+ left +'; top: ' + top + '">'
-            +'<span class="sprite icon-cube-moveable"></span></div>');
+            +'<span class="sprite icon-cube"></span></div>');
       }
     },
 
     setAward: function() {
-      nodes.award.css('left', 20 + (properties.award.position * 100) );
-      nodes.award.css('background-image', 'url(' + properties.award.url + ')');
+      for (var i = 0; i < properties.award.x.length; i++) {
+        var left = 20 + (properties.award.x[i] * 100) +'px';
+        var top = ((properties.award.y[i] * (-100)) - 100) +'px'
+        nodes.platform
+          .append('<div class="window-award js-award"' +
+            'style="left: ' + left + '; top: ' + top +
+            '; background-image: url(' + properties.award.url[i] + ');"></div>');
+      }
     }
 
   };
@@ -365,69 +422,6 @@ window.animations = {
 
   checkIfEnd();
 })();
-// (function() {
-//   var program        = $('.js-panel-program');
-//   var programActions = program.find('.js-panel-program-content');
-
-//   var win            = $(window);
-//   var body           = $(document.body);
-  
-//   var getVisibleHeight;
-//   var setSize;
-//   var init;
-//   var windowHeight;
-//   var clientScrollTop;
-//   var clientScrollBot;
-
-//   getVisibleHeight = function(item) {
-//     var itemTop           = item.offset().top;
-//     var itemBottom        = itemTop + item.outerHeight();
-//     var itemVisibleTop    = itemTop < clientScrollTop ? clientScrollTop : itemTop;
-//     var itemVisibleBottom = itemBottom > clientScrollBot ? clientScrollBot : itemBottom;
-    
-//     return (itemVisibleBottom - itemVisibleTop);
-//   };
-
-//   setSize = function() {
-//     windowHeight    = win.height();
-//     clientScrollTop = win.scrollTop();
-//     clientScrollBot = clientScrollTop + windowHeight;
-//     programActionsHeight = programActions.height();
-//   };
-
-//   init = function() {
-//     setSize();
-//   };
-
-//   body.on({
-//     mousemove: function(event) {
-//       var e = event || window.event;
-
-//       var diff;
-//       var currentCursorPosition;
-//       var clientMovePersentage;
-//       var programAreaHeight = getVisibleHeight(program);
-
-//       if (programAreaHeight > programActionsHeight) {
-//         diff = 0;
-//       } else {
-//         currentCursorPosition = e.clientY - 100;
-//         clientMovePersentage = currentCursorPosition / (programAreaHeight - 100);
-
-//         diff = - ((programActionsHeight - programAreaHeight) * clientMovePersentage);
-
-//         if (diff > 0) {
-//           diff = 0;
-//         }
-//         programActions.css({marginTop: diff});
-//       }
-//     }
-//   }, '.js-panel-program');
-
-//   win.on('scroll resize', setSize); 
-   
-//   init();
-// })();
 (function($, window, document, undefined) {
 
   var nodes = {
