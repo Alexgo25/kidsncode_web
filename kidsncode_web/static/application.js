@@ -1,20 +1,20 @@
 window.levels = {
   0: {    
     cubes: {    
-      x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 4, 5, 6, 7, 9, 0, 5, 6, 7, 9, 0, 6, 7, 9, 0, 7, 1, 2],
-      y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0 , 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
+      x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 2, 4, 5, 6, 7, 8, 9, 10, 5, 6, 7, 9, 0, 6, 7, 9, 0, 7, 1, 2],
+      y: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0 , 1, 1, 1, 1, 1, 1, 1, 1 , 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4]
     },
     
     robot: {
-      x: 6,
-      y: 4,
+      x: 0,
+      y: 1,
       direction: 'right'
     },
 
     award: {
-      x: [1, 11],
-      y: [1, 1],
-      url: ['http://cs631829.vk.me/v631829533/2cb3/V3icNf7q5fs.jpg', 'http://cs622119.vk.me/v622119363/362dd/3kAhx-v-dQ8.jpg']
+      x: [9, 11],
+      y: [4, 1],
+      url: ['http://cs631829.vk.me/v631829533/2cb3/V3icNf7q5fs.jpg', 'http://cs624818.vk.me/v624818533/31842/RUu8UoenACM.jpg']
     }
   }
 };
@@ -32,16 +32,18 @@ window.globals = {
 
   methods: {
     animations: {
-      
       awardTop: function() {
-        window.globals.nodes.award.animate({
+        $('.js-award').animate({
           top: '-=50'
-        }, 1500, function() {
-          $('.js-award').animate({
-            top: '+=50'
-          }, 1500, function() {
-            window.globals.methods.animations.awardTop();
-          });
+        }, 1500).promise().done(function() {
+          window.globals.methods.animations.awardBottom();
+        });
+      },
+      awardBottom: function() {
+        $('.js-award').animate({
+          top: '+=50'
+        }, 1500).promise().done(function() {
+          window.globals.methods.animations.awardTop();
         });
       },
 
@@ -56,7 +58,7 @@ window.globals = {
       }
     },
 
-    getCubesPositions: function() {
+    getCubesCordinates: function() {
       var items = window.globals.nodes.win.find('.js-platform-cube');
       var positions = { x: [], y: [] };
       for (var i = 0; i < items.length; i++) {      
@@ -66,7 +68,7 @@ window.globals = {
       return positions;
     },
 
-    getRobotPosition: function() {
+    getRobotCordinates: function() {
       var position = {};
       var left  = parseInt(window.globals.nodes.robot.css('left'));
       var top = parseInt(window.globals.nodes.robot.css('top'));
@@ -92,8 +94,8 @@ window.globals = {
       var zindex;
       var cube;
       var robot = window.globals.nodes.robot;
-      var robotPosition = window.globals.methods.getRobotPosition();
-      var positions = window.globals.methods.getCubesPositions();
+      var robotPosition = window.globals.methods.getRobotCordinates();
+      var positions = window.globals.methods.getCubesCordinates();
       for (; i < positions.y.length; i++) {
         zindex = (100 * positions.y[i] + positions.x[i]);
         cube = window.globals.methods.getCubeNode(positions.x[i], positions.y[i]);
@@ -104,7 +106,6 @@ window.globals = {
 
     setFallingZindex: function(cube) {
       var zindex = parseInt(cube.node.css('zIndex')) + parseInt(cube.direction + '1') + (cube.fallRange * -100);     
-      console.log(zindex);
       cube.node.css('zIndex', (zindex));
     }
   }
@@ -140,6 +141,7 @@ window.globals = {
     setAction: function() {
       var actions = nodes.program.find('.js-program-actions').children();
       var i = variables.actionIndex;
+      actions.removeClass('is-selected');
       if (actions.eq(i).hasClass('js-program-action')) {
         switch (actions.eq(i).data('action')) {
           case 'walk':
@@ -155,6 +157,7 @@ window.globals = {
             methods.robotJump();
             break
         }
+        actions.eq(i).addClass('is-selected');
       }
       variables.actionIndex++;
     },
@@ -182,7 +185,6 @@ window.globals = {
       var moveableCube;
       if (moveable.exist && moveable.pushable) {
         moveable.direction = direction;
-        console.log(moveable);
         moveableCube = helper.getCubeNode(moveable.x, moveable.y);
         if (moveable.fallable) {
           moveableCube.animate({ left: direction + '=100px' }, 1000, function() {
@@ -201,34 +203,47 @@ window.globals = {
     },
 
     robotJump: function() {
-      return;
+      var parameters;
+      var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
+      var jump = methods.checkJump(direction + 1);
+      console.log(jump);
+      if (jump.possibility) {
+        parameters = {
+          start: { x: jump.start.left, y: jump.start.top, angle: jump.start.angle },  
+          end: { x: jump.end.left, y: jump.end.top - 1, angle: jump.end.angle, length: jump.end.length }
+        }          
+        nodes.robot.animate({path : new $.path.bezier(parameters)}, 1000, function() {
+          helper.setZindexes();
+          methods.setAction(); 
+        });
+      }
     },
 
-    getRobotPosition: function() {
-      var position = {};
-      var left  = parseInt(nodes.robot.css('left'));
+    getRobotCordinates: function() {
+      var cordinates = {};
+      var left = parseInt(nodes.robot.css('left'));
       var top = parseInt(nodes.robot.css('top'));
-      position.x = (left - 20)/100;
-      position.y = (top + 133)/-100;
-      return position;
+      cordinates.x = (left - 20)/100;
+      cordinates.y = (top + 133)/-100;
+      return cordinates;
     },
 
-    getCubesPosition: function() {
+    getCubesCordinates: function() {
       var cubes = nodes.platform.find('.js-platform-cube');
-      var positions = [];
+      var cordinates = [];
       var left;
       var top;
       for (var i = 0; i < cubes.length; i++) {
         left = Math.abs(parseInt(cubes.eq(i).css('left'))/100);
         top = Math.abs((parseInt(cubes.eq(i).css('top')) + 100)/-100);
-        positions[i] = {'x': left, 'y': top};
+        cordinates[i] = {'x': left, 'y': top};
       }
-      return positions;
+      return cordinates;
     },
 
     checkWalk: function(direction) {
-      var robotPosition = methods.getRobotPosition();
-      var cubesPosition = methods.getCubesPosition();
+      var robotPosition = methods.getRobotCordinates();
+      var cubesPosition = methods.getCubesCordinates();
       var errors = 0;
       for (var i = 0; i < cubesPosition.length; i++) {
         if ( ((robotPosition.x + parseInt(direction)) === cubesPosition[i].x) && (robotPosition.y === cubesPosition[i].y) ) {  
@@ -239,8 +254,8 @@ window.globals = {
     },
 
     checkPush: function(direction) {
-      var robotPosition = methods.getRobotPosition();
-      var cubesPosition = methods.getCubesPosition();
+      var robotPosition = methods.getRobotCordinates();
+      var cubesPosition = methods.getCubesCordinates();
       var moveable = { exist: false, pushable: true, fallable: true, x: null, y: null };
       for (var i = 0; i < cubesPosition.length; i++) {
         if ( ((robotPosition.x + parseInt(direction)) === cubesPosition[i].x) && (robotPosition.y === cubesPosition[i].y) ) {  
@@ -273,6 +288,45 @@ window.globals = {
       moveable.node = helper.getCubeNode(moveable.x, moveable.y);
 
       return moveable;
+    },
+
+    checkJump: function(direction) {
+      var robotPosition = methods.getRobotCordinates();
+      var cubesPosition = methods.getCubesCordinates();
+      console.log(robotPosition);
+      var jump = { possibility: true, trajectory: 'straight' , start: {}, end: {} };
+
+      for (var i = 0; i < cubesPosition.length; i++) {
+        if ( ((robotPosition.x + parseInt(direction)) === cubesPosition[i].x) && (robotPosition.y === cubesPosition[i].y - 1) ) {  
+          jump.possibility = false;
+        } else if ( ((robotPosition.x + parseInt(direction)) === cubesPosition[i].x) && (robotPosition.y === cubesPosition[i].y) ) {
+          jump.trajectory = 'to-top';
+        }
+      }
+
+      if (helper.getCubeNode(robotPosition.x + parseInt(direction), robotPosition.y - 1) === undefined) {
+        jump.trajectory = 'to-bottom'
+      }
+
+      jump.start.left = parseInt(nodes.robot.css('left'));
+      jump.start.top = parseInt(nodes.robot.css('top'));
+      jump.end.left = parseInt(nodes.robot.css('left')) + parseInt(direction) * 100;
+      jump.start.angle = -50;
+      jump.end.angle = 100;
+      jump.end.length = 1;
+      
+      if (jump.trajectory === 'to-top') {
+        jump.end.top = parseInt(nodes.robot.css('top')) - 100;
+      } else if (jump.trajectory === 'to-bottom') {
+        jump.end.top = parseInt(nodes.robot.css('top')) + 100;
+        jump.start.angle = 120;
+        jump.end.angle = 50;
+        jump.end.length = 2.2;
+      } else {
+        jump.end.top = parseInt(nodes.robot.css('top'));
+      }
+
+      return jump;
     }
 
   };
@@ -288,14 +342,15 @@ window.globals = {
   };
 
   var properties = window.properties;
+  var helper = window.globals.methods;
 
   var methods = {
     init: function() {
       methods.setCubes();
       methods.setRobot();
       methods.setAward();
-      window.globals.methods.setZindexes();
-      window.globals.methods.animations.awardTop();
+      helper.setZindexes();
+      helper.animations.awardTop();
     },
 
     setRobot: function() {
@@ -320,7 +375,7 @@ window.globals = {
 
     setAward: function() {
       for (var i = 0; i < properties.award.x.length; i++) {
-        var left = 20 + (properties.award.x[i] * 100) +'px';
+        var left = 40 + (properties.award.x[i] * 100) +'px';
         var top = ((properties.award.y[i] * (-100)) - 100) +'px'
         nodes.platform
           .append('<div class="window-award js-award"' +

@@ -9,16 +9,18 @@ window.globals = {
 
   methods: {
     animations: {
-      
       awardTop: function() {
-        window.globals.nodes.award.animate({
+        $('.js-award').animate({
           top: '-=50'
-        }, 1500, function() {
-          $('.js-award').animate({
-            top: '+=50'
-          }, 1500, function() {
-            window.globals.methods.animations.awardTop();
-          });
+        }, 1500).promise().done(function() {
+          window.globals.methods.animations.awardBottom();
+        });
+      },
+      awardBottom: function() {
+        $('.js-award').animate({
+          top: '+=50'
+        }, 1500).promise().done(function() {
+          window.globals.methods.animations.awardTop();
         });
       },
 
@@ -33,7 +35,7 @@ window.globals = {
       }
     },
 
-    getCubesPositions: function() {
+    getCubesCordinates: function() {
       var items = window.globals.nodes.win.find('.js-platform-cube');
       var positions = { x: [], y: [] };
       for (var i = 0; i < items.length; i++) {      
@@ -43,7 +45,7 @@ window.globals = {
       return positions;
     },
 
-    getRobotPosition: function() {
+    getRobotCordinates: function() {
       var position = {};
       var left  = parseInt(window.globals.nodes.robot.css('left'));
       var top = parseInt(window.globals.nodes.robot.css('top'));
@@ -69,8 +71,8 @@ window.globals = {
       var zindex;
       var cube;
       var robot = window.globals.nodes.robot;
-      var robotPosition = window.globals.methods.getRobotPosition();
-      var positions = window.globals.methods.getCubesPositions();
+      var robotPosition = window.globals.methods.getRobotCordinates();
+      var positions = window.globals.methods.getCubesCordinates();
       for (; i < positions.y.length; i++) {
         zindex = (100 * positions.y[i] + positions.x[i]);
         cube = window.globals.methods.getCubeNode(positions.x[i], positions.y[i]);
@@ -81,7 +83,6 @@ window.globals = {
 
     setFallingZindex: function(cube) {
       var zindex = parseInt(cube.node.css('zIndex')) + parseInt(cube.direction + '1') + (cube.fallRange * -100);     
-      console.log(zindex);
       cube.node.css('zIndex', (zindex));
     }
   }

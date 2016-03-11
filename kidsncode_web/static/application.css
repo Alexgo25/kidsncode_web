@@ -472,6 +472,9 @@ body {
     font-size: 13px;
     line-height: 38px;
     cursor: pointer; }
+    .panel-program__action.is-selected {
+      background-color: #52b6aa;
+      border-bottom-color: #25776f; }
     .panel-program__action.is-loopy {
       background-color: #f17d17;
       border-bottom-color: #de6b04; }
@@ -559,7 +562,7 @@ body {
   width: 96px;
   height: 96px;
   position: absolute;
-  z-index: 5000;
+  z-index: 600;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

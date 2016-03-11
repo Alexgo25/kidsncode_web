@@ -7,14 +7,15 @@
   };
 
   var properties = window.properties;
+  var helper = window.globals.methods;
 
   var methods = {
     init: function() {
       methods.setCubes();
       methods.setRobot();
       methods.setAward();
-      window.globals.methods.setZindexes();
-      window.globals.methods.animations.awardTop();
+      helper.setZindexes();
+      helper.animations.awardTop();
     },
 
     setRobot: function() {
@@ -39,7 +40,7 @@
 
     setAward: function() {
       for (var i = 0; i < properties.award.x.length; i++) {
-        var left = 20 + (properties.award.x[i] * 100) +'px';
+        var left = 40 + (properties.award.x[i] * 100) +'px';
         var top = ((properties.award.y[i] * (-100)) - 100) +'px'
         nodes.platform
           .append('<div class="window-award js-award"' +
