@@ -7,23 +7,24 @@
   };
 
   var properties = window.properties;
-  var helper = window.globals.methods;
+  var helper = window.helpers.methods;
 
   var methods = {
     init: function() {
       methods.setCubes();
       methods.setRobot();
       methods.setAward();
-      helper.setZindexes();
+      helper.setZindexes('horizontal');
       helper.animations.awardTop();
     },
 
     setRobot: function() {
+      nodes.robot.data('direction', properties.robot.direction);
       nodes.robot.css({
         'left': 20 + (properties.robot.x * 100) +'px',
         'top': ((properties.robot.y * (-100)) - 133) +'px'
       });
-      nodes.robot.data('direction', properties.robot.direction);
+      nodes.robot.find('.js-robot-model').html('<span class="sprite icon-robot-' + properties.robot.direction + '"></span>')
     },
 
     setCubes: function() {
