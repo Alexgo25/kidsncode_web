@@ -15,15 +15,435 @@ Icon classes can be used entirely standalone. They are named after their origina
   width: 157px;
   height: 131px;
 }
+.icon-robot-jump-left-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -11079px;
+  width: 118px;
+  height: 164px;
+}
+.icon-robot-jump-left-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -10915px;
+  width: 118px;
+  height: 164px;
+}
+.icon-robot-jump-left-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -10751px;
+  width: 118px;
+  height: 164px;
+}
+.icon-robot-jump-left-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -10587px;
+  width: 118px;
+  height: 164px;
+}
+.icon-robot-jump-left-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -10423px;
+  width: 118px;
+  height: 164px;
+}
+.icon-robot-jump-left-6 {
+  background-image: url(sprite.png);
+  background-position: 0px -10259px;
+  width: 118px;
+  height: 164px;
+}
+.icon-robot-jump-left-7 {
+  background-image: url(sprite.png);
+  background-position: 0px -10095px;
+  width: 118px;
+  height: 164px;
+}
+.icon-robot-jump-left-8 {
+  background-image: url(sprite.png);
+  background-position: 0px -9931px;
+  width: 118px;
+  height: 164px;
+}
+.icon-robot-jump-right-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -8643px;
+  width: 96px;
+  height: 161px;
+}
+.icon-robot-jump-right-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -9609px;
+  width: 96px;
+  height: 161px;
+}
+.icon-robot-jump-right-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -9448px;
+  width: 96px;
+  height: 161px;
+}
+.icon-robot-jump-right-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -9287px;
+  width: 96px;
+  height: 161px;
+}
+.icon-robot-jump-right-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -9126px;
+  width: 96px;
+  height: 161px;
+}
+.icon-robot-jump-right-6 {
+  background-image: url(sprite.png);
+  background-position: 0px -8965px;
+  width: 96px;
+  height: 161px;
+}
+.icon-robot-jump-right-7 {
+  background-image: url(sprite.png);
+  background-position: 0px -8804px;
+  width: 96px;
+  height: 161px;
+}
+.icon-robot-jump-right-8 {
+  background-image: url(sprite.png);
+  background-position: 0px -9770px;
+  width: 96px;
+  height: 161px;
+}
 .icon-robot-left {
   background-image: url(sprite.png);
-  background-position: 0px -131px;
+  background-position: 0px -2563px;
   width: 121px;
+  height: 152px;
+}
+.icon-robot-mistake-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -2715px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-mistake-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -2867px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-mistake-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -3019px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-mistake-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -3171px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-mistake-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -3323px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-mistake-6 {
+  background-image: url(sprite.png);
+  background-position: 0px -3475px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-mistake-7 {
+  background-image: url(sprite.png);
+  background-position: 0px -3627px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-mistake-8 {
+  background-image: url(sprite.png);
+  background-position: 0px -3779px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-mistake-9 {
+  background-image: url(sprite.png);
+  background-position: 0px -3931px;
+  width: 101px;
+  height: 152px;
+}
+.icon-robot-push-left-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -4083px;
+  width: 133px;
+  height: 152px;
+}
+.icon-robot-push-left-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -4235px;
+  width: 133px;
+  height: 152px;
+}
+.icon-robot-push-left-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -4387px;
+  width: 133px;
+  height: 152px;
+}
+.icon-robot-push-left-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -4539px;
+  width: 133px;
+  height: 152px;
+}
+.icon-robot-push-left-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -4691px;
+  width: 133px;
+  height: 152px;
+}
+.icon-robot-push-right-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -4843px;
+  width: 117px;
+  height: 152px;
+}
+.icon-robot-push-right-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -4995px;
+  width: 117px;
+  height: 152px;
+}
+.icon-robot-push-right-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -5147px;
+  width: 117px;
+  height: 152px;
+}
+.icon-robot-push-right-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -5299px;
+  width: 117px;
+  height: 152px;
+}
+.icon-robot-push-right-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -8491px;
+  width: 117px;
   height: 152px;
 }
 .icon-robot-right {
   background-image: url(sprite.png);
+  background-position: 0px -5603px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-turn-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -5755px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -5907px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -6059px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -6211px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -6363px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-6 {
+  background-image: url(sprite.png);
+  background-position: 0px -6515px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-7 {
+  background-image: url(sprite.png);
+  background-position: 0px -6667px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-facing-left-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -6819px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-facing-left-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -6971px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-facing-left-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -7123px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-facing-left-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -7275px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-facing-left-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -7427px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-turn-facing-right-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -7579px;
+  width: 100px;
+  height: 152px;
+}
+.icon-robot-turn-facing-right-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -7731px;
+  width: 100px;
+  height: 152px;
+}
+.icon-robot-turn-facing-right-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -7883px;
+  width: 100px;
+  height: 152px;
+}
+.icon-robot-turn-facing-right-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -8035px;
+  width: 100px;
+  height: 152px;
+}
+.icon-robot-turn-facing-right-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -8187px;
+  width: 100px;
+  height: 152px;
+}
+.icon-robot-walk-left-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -8339px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-walk-left-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -5451px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-walk-left-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -2411px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-walk-left-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -2259px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-walk-left-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -2107px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-walk-left-6 {
+  background-image: url(sprite.png);
+  background-position: 0px -1955px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-walk-left-7 {
+  background-image: url(sprite.png);
+  background-position: 0px -1803px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-walk-left-8 {
+  background-image: url(sprite.png);
+  background-position: 0px -1651px;
+  width: 118px;
+  height: 152px;
+}
+.icon-robot-walk-left-9 {
+  background-image: url(sprite.png);
+  background-position: 0px -1499px;
+  width: 121px;
+  height: 152px;
+}
+.icon-robot-walk-right-1 {
+  background-image: url(sprite.png);
+  background-position: 0px -1347px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-2 {
+  background-image: url(sprite.png);
+  background-position: 0px -1195px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-3 {
+  background-image: url(sprite.png);
+  background-position: 0px -1043px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-4 {
+  background-image: url(sprite.png);
+  background-position: 0px -891px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-5 {
+  background-image: url(sprite.png);
+  background-position: 0px -739px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-6 {
+  background-image: url(sprite.png);
+  background-position: 0px -587px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-7 {
+  background-image: url(sprite.png);
+  background-position: 0px -435px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-8 {
+  background-image: url(sprite.png);
   background-position: 0px -283px;
+  width: 96px;
+  height: 152px;
+}
+.icon-robot-walk-right-9 {
+  background-image: url(sprite.png);
+  background-position: 0px -131px;
   width: 96px;
   height: 152px;
 }
@@ -32,14 +452,294 @@ Icon classes can be used entirely standalone. They are named after their origina
        (min-resolution: 192dpi) {
   .icon-cube {
     background-image: url(sprite@2x.png);
-    background-size: 157px 435px;
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-left-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-left-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-left-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-left-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-left-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-left-6 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-left-7 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-left-8 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-right-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-right-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-right-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-right-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-right-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-right-6 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-right-7 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-jump-right-8 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
   }
   .icon-robot-left {
     background-image: url(sprite@2x.png);
-    background-size: 157px 435px;
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-6 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-7 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-8 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-mistake-9 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-left-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-left-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-left-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-left-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-left-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-right-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-right-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-right-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-right-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-push-right-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
   }
   .icon-robot-right {
     background-image: url(sprite@2x.png);
-    background-size: 157px 435px;
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-6 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-7 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-left-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-left-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-left-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-left-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-left-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-right-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-right-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-right-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-right-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-turn-facing-right-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-6 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-7 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-8 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-left-9 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-1 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-2 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-3 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-4 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-5 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-6 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-7 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-8 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
+  }
+  .icon-robot-walk-right-9 {
+    background-image: url(sprite@2x.png);
+    background-size: 157px 11243px;
   }
 }

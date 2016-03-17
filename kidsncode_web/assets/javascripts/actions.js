@@ -59,30 +59,31 @@
         return;
       } 
       if (walk.errors === 0) {
+        helper.animations.robotWalk(nodes.robot.data('direction'));
         nodes.robot.animate({ left: direction + '=100px' }, 1000, function() {
           helper.setZindexes('horizontal');
           methods.setAction();
         });
       } else {
-        alert('Walk mistake');
+        helper.animations.robotMistake();
         setTimeout(function() {
           methods.setAction();
-        }, 100);
+        }, 1000);
       }
     },
 
     robotReverse: function() {
       var direction = nodes.robot.data('direction');
       if (direction === 'right') {
+        helper.animations.robotReverse('left');
         nodes.robot.data('direction', 'left');
-        nodes.robot.find('.js-robot-model').html('<span class="sprite icon-robot-left"></span>')
       } else {
+        helper.animations.robotReverse('right');
         nodes.robot.data('direction', 'right');
-        nodes.robot.find('.js-robot-model').html('<span class="sprite icon-robot-right"></span>')
       }
       setTimeout(function() {
         methods.setAction();
-      }, 10);
+      }, 1000);
     },
 
     robotPush: function() {
@@ -90,6 +91,7 @@
       var moveable = methods.checkPush(direction + 1);
       var moveableCube;
       if (moveable.exist && moveable.pushable) {
+        helper.animations.robotPush(nodes.robot.data('direction'));
         moveable.direction = direction;
         moveableCube = helper.getCubeNode(moveable.x, moveable.y);
         if (moveable.fallable) {
@@ -104,10 +106,10 @@
           });
         }                
       } else {
-        alert('Push mistake');
+        helper.animations.robotMistake();
         setTimeout(function() {
           methods.setAction();
-        }, 100);
+        }, 1000);
       }
     },
 
@@ -125,10 +127,10 @@
           methods.setAction(); 
         });
       } else {
-        alert('Jump mistake');
+        helper.animations.robotMistake();
         setTimeout(function() {
           methods.setAction();
-        }, 100);
+        }, 1000);
       }
     },
 
