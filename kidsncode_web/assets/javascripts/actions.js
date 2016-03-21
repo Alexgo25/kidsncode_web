@@ -65,10 +65,10 @@
           methods.setAction();
         });
       } else {
-        helper.animations.robotMistake();
+        helper.animations.robotMistake(nodes.robot.data('direction'));
         setTimeout(function() {
           methods.setAction();
-        }, 1000);
+        }, 2000);
       }
     },
 
@@ -96,8 +96,11 @@
         moveableCube = helper.getCubeNode(moveable.x, moveable.y);
         if (moveable.fallable) {
           moveableCube.animate({ left: direction + '=100px' }, 1000, function() {
-            helper.setFallingZindex(moveable);
-            moveableCube.animate({ top: '+='+ (moveable.fallRange * 100) + 'px'}, 250, function() { methods.setAction() });
+            helper.setZindexes('vertical');
+            moveableCube.animate({ top: '+='+ (moveable.fallRange * 100) + 'px'}, 250, function() { 
+              helper.setZindexes('horizontal');
+              methods.setAction() 
+            });
           });
         } else {          
           moveableCube.animate({ left: direction + '=100px' }, 1000, function() { 
@@ -106,10 +109,10 @@
           });
         }                
       } else {
-        helper.animations.robotMistake();
+        helper.animations.robotMistake(nodes.robot.data('direction'));
         setTimeout(function() {
           methods.setAction();
-        }, 1000);
+        }, 2000);
       }
     },
 
@@ -122,15 +125,19 @@
           start: { x: jump.start.left, y: jump.start.top, angle: jump.start.angle },  
           end: { x: jump.end.left, y: jump.end.top - 1, angle: jump.end.angle, length: jump.end.length }
         }
-        nodes.robot.animate({path : new $.path.bezier(parameters)}, 1000, function() {
-          helper.setZindexes('horizontal');
-          methods.setAction(); 
-        });
+        helper.animations.robotJump(nodes.robot.data('direction'));
+        setTimeout(function() {
+          setTimeout(function() { helper.setFutureZ(jump.end) }, 600);
+          nodes.robot.animate({path : new $.path.bezier(parameters)}, 1000, function() {
+            helper.setZindexes('horizontal');
+            setTimeout(function() { methods.setAction(); }, 400);
+          });
+        }, 400);
       } else {
-        helper.animations.robotMistake();
+        helper.animations.robotMistake(nodes.robot.data('direction'));
         setTimeout(function() {
           methods.setAction();
-        }, 1000);
+        }, 2000);
       }
     },
 

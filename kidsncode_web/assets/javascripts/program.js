@@ -8,12 +8,19 @@
     loop: $('.js-loop')
   };
 
+  var helper = window.helpers.methods;
+
   var methods = {
     setEvents: function() {
 
       nodes.robot.on({
         click: function() {
           $(this).toggleClass('is-select');
+          if ($(this).hasClass('is-select')) {
+            helper.animations.robotTurnFacing(nodes.robot.data('direction'));
+          } else {
+            helper.animations.robotTurnFacingBack(nodes.robot.data('direction'));
+          }
         }
       });
 
@@ -96,7 +103,7 @@
         case 'push':
           return 'толкнуть';
         case 'jump':
-          return 'запрыгнуть';
+          return 'прыгнуть';
       }
     }
     
