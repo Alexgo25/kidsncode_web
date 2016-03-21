@@ -143,7 +143,6 @@ body {
   left: 0;
   width: 75%;
   padding: 20px;
-  background-color: #f7d37f;
   z-index: 1000; }
   .controls__btn {
     display: inline-block;
@@ -213,10 +212,10 @@ body {
       color: #000000; }
   .panel-controls__btn-debug {
     display: inline-block;
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     background-color: #52b6aa;
-    border-radius: 60px;
+    border-radius: 55px;
     border-color: #52b6aa;
     border-width: 0px;
     -webkit-transition: background-color 200ms ease-out;
@@ -229,10 +228,10 @@ body {
       content: 'Отладка'; }
   .panel-controls__btn-restart {
     display: inline-block;
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     background-color: #f17d17;
-    border-radius: 60px;
+    border-radius: 55px;
     border-color: #f17d17;
     border-width: 0px;
     -webkit-transition: background-color 200ms ease-out;
@@ -245,10 +244,10 @@ body {
       content: 'Заново'; }
   .panel-controls__btn-start {
     display: inline-block;
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     background-color: #f86161;
-    border-radius: 60px;
+    border-radius: 55px;
     border-color: #f86161;
     border-width: 0px;
     -webkit-transition: background-color 200ms ease-out;
@@ -261,10 +260,10 @@ body {
       content: 'Запуск'; }
   .panel-controls__btn-cancel {
     display: inline-block;
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
     background-color: #a44db9;
-    border-radius: 60px;
+    border-radius: 55px;
     border-color: #a44db9;
     border-width: 0px;
     -webkit-transition: background-color 200ms ease-out;
@@ -580,9 +579,9 @@ body {
 
 .window-robot {
   position: absolute;
-  top: -133px;
-  left: 20px;
-  cursor: pointer; }
+  cursor: pointer;
+  width: 100px;
+  height: 153px; }
   .window-robot__control {
     position: relative;
     top: 80px;
@@ -662,4 +661,5 @@ body {
         top: -15px;
         left: -6px; }
   .window-robot__model {
-    position: absolute; }
+    position: absolute;
+    bottom: 0; }
