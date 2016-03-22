@@ -1,33 +1,50 @@
-(function($, window, document, undefined) {
-  var nodes = {
-    body: $(document.body),
-    robot: $('.js-robot'),
-    program: $('.js-program'),
-    controls: $('.js-controls'),
-    loop: $('.js-loop'),
-    platform: $('.js-platform')
-  };
-
-  var variables = {
-    actionIndex: 0
-  };
-
-  var helper = window.helpers.methods;
-  var animation = window.helpers.methods.animations;
-  var properties = window.properties;
+var actions = (function(h, n, s, p, a) {
+  var variables = { actionIndex: 0, programStarted: false, awardsFinded: 0 };
 
   var methods = {
     setEvents: function() {
-      nodes.controls.on({
+      n.controls.on({
         click: function() {
-          methods.setAction();
-          nodes.robot.removeClass('is-select');
+          var actions = n.program.find('.js-program-actions').children();
+          if (actions.length > 0) {
+            variables.programStarted = true;
+            methods.setAction();
+            n.robot.removeClass('is-select');
+          }
         }
       }, '.js-controls-start');
+
+      n.controls.on({
+        click: function() {
+          s.init();
+          variables.actionIndex = 0;
+          variables.programStarted = false;
+        }
+      }, '.js-controls-cancel');
+
+      n.controls.on({
+        click: function() {
+          var actions = n.program.find('.js-program-actions');
+          s.init();
+          actions.html('');
+          variables.actionIndex = 0;
+          variables.programStarted = false;
+        }
+      }, '.js-controls-restart');
+
+      n.controls.on({
+        click: function() {
+          var actions = n.program.find('.js-program-actions').children();
+          if (actions.length > 0) {
+            methods.setAction();
+            n.robot.removeClass('is-select');
+          }
+        }
+      }, '.js-controls-debug');
     },
 
     setAction: function() {
-      var actions = nodes.program.find('.js-program-actions').children();
+      var actions = n.program.find('.js-program-actions').children();
       var i = variables.actionIndex;
       actions.removeClass('is-selected');
       if (actions.eq(i).hasClass('js-program-action')) {
@@ -51,7 +68,7 @@
     },
 
     robotWalk: function() {
-      var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
+      var direction = n.robot.data('direction') === 'right' ? '+' : '-';
       var walk = methods.checkWalk(direction + 1);
 
       if (walk.special === 'jump') {
@@ -59,106 +76,115 @@
         return;
       } 
       if (walk.errors === 0) {
-        helper.animations.robotWalk(nodes.robot.data('direction'));
-        nodes.robot.animate({ left: direction + '=100px' }, 1000, function() {
-          helper.setZindexes('horizontal');
-          methods.setAction();
+        a.robotWalk(n.robot.data('direction'));
+        n.robot.animate({ left: direction + '=100px' }, 1000, function() {
+          h.setZindexes('horizontal');
+          methods.checkAward();
+          if (variables.programStarted) methods.setAction();
         });
       } else {
-        helper.animations.robotMistake(nodes.robot.data('direction'));
+        a.robotMistake(n.robot.data('direction'));
         setTimeout(function() {
-          methods.setAction();
+          methods.checkAward();
+          if (variables.programStarted) methods.setAction();
         }, 2000);
       }
     },
 
     robotReverse: function() {
-      var direction = nodes.robot.data('direction');
+      var direction = n.robot.data('direction');
       if (direction === 'right') {
-        helper.animations.robotReverse('left');
-        nodes.robot.data('direction', 'left');
+        a.robotReverse('left');
+        n.robot.data('direction', 'left');
       } else {
-        helper.animations.robotReverse('right');
-        nodes.robot.data('direction', 'right');
+        a.robotReverse('right');
+        n.robot.data('direction', 'right');
       }
       setTimeout(function() {
-        methods.setAction();
+        if (variables.programStarted) methods.setAction();
       }, 1000);
     },
 
     robotPush: function() {
-      var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
+      var direction = n.robot.data('direction') === 'right' ? '+' : '-';
       var moveable = methods.checkPush(direction + 1);
       var moveableCube;
       if (moveable.exist && moveable.pushable) {
-        helper.animations.robotPush(nodes.robot.data('direction'));
+        a.robotPush(n.robot.data('direction'));
         moveable.direction = direction;
-        moveableCube = helper.getCubeNode(moveable.x, moveable.y);
+        moveableCube = h.getCubeNode(moveable.x, moveable.y);
         if (moveable.fallable) {
           moveableCube.animate({ left: direction + '=100px' }, 1000, function() {
-            helper.setZindexes('vertical');
+            h.setZindexes('vertical');
             moveableCube.animate({ top: '+='+ (moveable.fallRange * 100) + 'px'}, 250, function() { 
-              helper.setZindexes('horizontal');
-              methods.setAction() 
+              h.setZindexes('horizontal');
+              methods.checkAward();
+              if (variables.programStarted) methods.setAction();
             });
           });
         } else {          
           moveableCube.animate({ left: direction + '=100px' }, 1000, function() { 
-            helper.setZindexes('horizontal');
-            methods.setAction(); 
+            h.setZindexes('horizontal');
+            methods.checkAward();
+            if (variables.programStarted) methods.setAction(); 
           });
         }                
       } else {
-        helper.animations.robotMistake(nodes.robot.data('direction'));
+        a.robotMistake(n.robot.data('direction'));
         setTimeout(function() {
-          methods.setAction();
+          methods.checkAward();
+          if (variables.programStarted) methods.setAction();
         }, 2000);
       }
     },
 
     robotJump: function() {
       var parameters;
-      var direction = nodes.robot.data('direction') === 'right' ? '+' : '-';
+      var direction = n.robot.data('direction') === 'right' ? '+' : '-';
       var jump = methods.checkJump(direction + 1);
       if (jump.possibility) {
         parameters = {
           start: { x: jump.start.left, y: jump.start.top, angle: jump.start.angle },  
           end: { x: jump.end.left, y: jump.end.top - 1, angle: jump.end.angle, length: jump.end.length }
         }
-        helper.animations.robotJump(nodes.robot.data('direction'));
+        a.robotJump(n.robot.data('direction'));
         setTimeout(function() {
-          setTimeout(function() { helper.setFutureZ(jump.end) }, 600);
-          nodes.robot.animate({path : new $.path.bezier(parameters)}, 1000, function() {
-            helper.setZindexes('horizontal');
-            setTimeout(function() { methods.setAction(); }, 400);
+          setTimeout(function() { h.setFutureZ(jump.end) }, 600);
+          n.robot.animate({path : new $.path.bezier(parameters)}, 1000, function() {
+            h.setZindexes('horizontal');
+            setTimeout(function() {
+              methods.checkAward();
+              if (variables.programStarted) methods.setAction();
+            }, 400);
           });
         }, 400);
       } else {
-        helper.animations.robotMistake(nodes.robot.data('direction'));
+        a.robotMistake(n.robot.data('direction'));
         setTimeout(function() {
-          methods.setAction();
+          methods.checkAward();
+          if (variables.programStarted) methods.setAction();
         }, 2000);
       }
     },
 
     checkWalk: function(direction) {
-      var robotCordinates = helper.getRobotCordinates();
-      var cubesCordinates = helper.getCubesCordinates();
+      var robotCordinates = h.getRobotCordinates();
+      var cubesCordinates = h.getCubesCordinates();
       var result = { errors: 0, special: null };
       for (var i = 0; i < cubesCordinates.x.length; i++) {
         if ( ((robotCordinates.x + parseInt(direction)) === cubesCordinates.x[i]) && (robotCordinates.y === cubesCordinates.y[i]) ) {  
           result.errors++;
         }
       }   
-      if (helper.getCubeNode(robotCordinates.x + parseInt(direction), robotCordinates.y - 1) === undefined) {
+      if (h.getCubeNode(robotCordinates.x + parseInt(direction), robotCordinates.y - 1) === undefined) {
         result.special = 'jump';
       }      
       return result;
     },
 
     checkPush: function(direction) {
-      var robotCordinates = helper.getRobotCordinates();
-      var cubesCordinates = helper.getCubesCordinates();
+      var robotCordinates = h.getRobotCordinates();
+      var cubesCordinates = h.getCubesCordinates();
       var moveable = { exist: false, pushable: true, fallable: true, x: null, y: null };
       for (var i = 0; i < cubesCordinates.x.length; i++) {
         if ( ((robotCordinates.x + parseInt(direction)) === cubesCordinates.x[i]) && (robotCordinates.y === cubesCordinates.y[i]) ) {  
@@ -188,14 +214,14 @@
         moveable.fallRange = moveable.y - existCubes;
       }
 
-      moveable.node = helper.getCubeNode(moveable.x, moveable.y);
+      moveable.node = h.getCubeNode(moveable.x, moveable.y);
 
       return moveable;
     },
 
     checkJump: function(direction) {
-      var robotCordinates = helper.getRobotCordinates();
-      var cubesCordinates = helper.getCubesCordinates();
+      var robotCordinates = h.getRobotCordinates();
+      var cubesCordinates = h.getCubesCordinates();
       var jump = { possibility: true, trajectory: 'straight' , start: {}, end: {} };
 
       for (var i = 0; i < cubesCordinates.x.length; i++) {
@@ -206,37 +232,49 @@
         }
       }
 
-      if (helper.getCubeNode(robotCordinates.x + parseInt(direction), robotCordinates.y - 2) === undefined && robotCordinates.y > 2) {
+      if (h.getCubeNode(robotCordinates.x + parseInt(direction), robotCordinates.y - 2) === undefined && robotCordinates.y > 2) {
         jump.possibility = false;
       }
 
-      if (helper.getCubeNode(robotCordinates.x + parseInt(direction), robotCordinates.y - 1) === undefined) {
+      if (h.getCubeNode(robotCordinates.x + parseInt(direction), robotCordinates.y - 1) === undefined) {
         jump.trajectory = 'to-bottom'
         if (robotCordinates.y === 1) { jump.possibility = false };
       }
 
-      jump.start.left = parseInt(nodes.robot.css('left'));
-      jump.start.top = parseInt(nodes.robot.css('top'));
-      jump.end.left = parseInt(nodes.robot.css('left')) + parseInt(direction) * 100;
+      jump.start.left = parseInt(n.robot.css('left'));
+      jump.start.top = parseInt(n.robot.css('top'));
+      jump.end.left = parseInt(n.robot.css('left')) + parseInt(direction) * 100;
       jump.start.angle = -50 * parseInt(direction);
       jump.end.angle = 100 * parseInt(direction);
       jump.end.length = 1;
       
       if (jump.trajectory === 'to-top') {
-        jump.end.top = parseInt(nodes.robot.css('top')) - 100;
+        jump.end.top = parseInt(n.robot.css('top')) - 100;
       } else if (jump.trajectory === 'to-bottom') {
-        jump.end.top = parseInt(nodes.robot.css('top')) + 100;
+        jump.end.top = parseInt(n.robot.css('top')) + 100;
         jump.start.angle = 120 * parseInt(direction);
         jump.end.angle = 50 * parseInt(direction);
         jump.end.length = 2.2;
       } else {
-        jump.end.top = parseInt(nodes.robot.css('top'));
+        jump.end.top = parseInt(n.robot.css('top'));
       }
 
       return jump;
+    },
+
+    checkAward: function() {
+      var robotCordinates = h.getRobotCordinates();
+      var award;
+      for (var i = 0; i < p.award.x.length; i++) {
+        if (p.award.x[i] === robotCordinates.x && p.award.y[i] === robotCordinates.y) {
+          award = h.getAwardNode(p.award.x[i], p.award.y[i]);
+          award.remove();
+          variables.awardsFinded++;
+        }
+      }
     }
 
   };
 
   methods.setEvents();
-})(jQuery, window, document);
+})(helpers, nodes, setup, properties, animations);
