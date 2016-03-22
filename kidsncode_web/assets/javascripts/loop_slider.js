@@ -1,4 +1,4 @@
-(function() {
+var loopSlider = (function() {
   var node           = $('.js-loop-slider');
   var sliderLeft     = node.find('.js-loop-slider-left');
   var sliderRight    = node.find('.js-loop-slider-right');
