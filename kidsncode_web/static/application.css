@@ -168,7 +168,7 @@ body {
   background-color: #f1b843;
   width: 25%;
   min-width: 310px;
-  z-index: 1000; }
+  z-index: 999999; }
 
 .panel-controls {
   white-space: nowrap;
@@ -220,7 +220,10 @@ body {
     border-width: 0px;
     -webkit-transition: background-color 200ms ease-out;
     transition: background-color 200ms ease-out;
-    position: relative; }
+    position: relative;
+    color: #ffffff;
+    font-size: 25px;
+    padding-top: 14px; }
     .panel-controls__btn-debug:hover {
       background-color: #25776f;
       border-color: #25776f; }

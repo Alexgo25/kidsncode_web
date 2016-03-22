@@ -1,41 +1,30 @@
-(function($, window, document, undefined) {
-
-  var nodes = {
-    body: $(document.body),
-    robot: $('.js-robot'),
-    program: $('.js-program'),
-    controls: $('.js-controls'),
-    loop: $('.js-loop')
-  };
-
-  var helper = window.helpers.methods;
-
+var program = (function(h, n, a) {
   var methods = {
     setEvents: function() {
 
-      nodes.robot.on({
+      n.robot.on({
         click: function() {
           $(this).toggleClass('is-select');
           if ($(this).hasClass('is-select')) {
-            helper.animations.robotTurnFacing(nodes.robot.data('direction'));
+            a.robotTurnFacing(n.robot.data('direction'));
           } else {
-            helper.animations.robotTurnFacingBack(nodes.robot.data('direction'));
+            a.robotTurnFacingBack(n.robot.data('direction'));
           }
         }
       });
 
-      nodes.robot.on({
+      n.robot.on({
         click: function(event) {
           event.preventDefault();
           event.stopPropagation();
           var type = $(this).data('action');
           var name = methods.getActionName(type);
           var newAction = '<div class="panel-program__action js-program-action" data-action="' + type + '">'+ name +'</div>';
-          nodes.program.find('.js-program-actions').append(newAction);
+          n.program.find('.js-program-actions').append(newAction);
         }
       }, '.js-robot-action');
 
-      nodes.program.on({
+      n.program.on({
         click: function() {
           if ($(this).parents('.js-program-loop').length) {
             return;
@@ -45,12 +34,12 @@
         }
       }, '.js-program-action');
 
-      nodes.loop.on({
+      n.loop.on({
         click: function() {
           var newLoop;
-          var loopyEl    = nodes.program.find('.js-program-action.is-loopy');
+          var loopyEl    = n.program.find('.js-program-action.is-loopy');
           var loopyFirst = loopyEl.first();
-          var loopSteps  = nodes.controls.find('.js-loop-slider-element.is-active').data('index');
+          var loopSteps  = n.controls.find('.js-loop-slider-element.is-active').data('index');
 
           loopyFirst
             .before('<div class="panel-program__loop js-program-loop is-new" data-index="'+ loopSteps +'">'
@@ -60,10 +49,10 @@
               +'<div class="panel-program__loop-title js-program-loop-angle-title"></div>'
               +'</div></div>');
 
-          newLoop = nodes.program.find('.js-program-loop.is-new');
+          newLoop = n.program.find('.js-program-loop.is-new');
           newLoop.append(loopyEl.removeClass('is-loopy'));
 
-          nodes.controls.removeClass('is-loop');
+          n.controls.removeClass('is-loop');
 
           setTimeout(function() {         
             newLoop.find('.js-program-loop-angle-title').append('ПОВТОРИТЬ x' + loopSteps);
@@ -76,21 +65,21 @@
         }
       }, '.js-loop-submit');
 
-      nodes.loop.on({
+      n.loop.on({
         click: function() {
           variables.newLoop = [];
-          nodes.controls.removeClass('is-loop');
+          n.controls.removeClass('is-loop');
         }
       }, '.js-loop-cancel');
 
     },
 
     openLoopControl: function() {
-      var actions = nodes.program.find('.js-program-action.is-loopy');
+      var actions = n.program.find('.js-program-action.is-loopy');
       if (actions.length > 0) {
-        nodes.controls.addClass('is-loop');
+        n.controls.addClass('is-loop');
       } else {
-        nodes.controls.removeClass('is-loop');
+        n.controls.removeClass('is-loop');
       }
     },
 
@@ -105,10 +94,7 @@
         case 'jump':
           return 'прыгнуть';
       }
-    }
-    
+    } 
   };
-
   methods.setEvents();
-
-})(jQuery, window, document);
+})(helpers, nodes, animations);
